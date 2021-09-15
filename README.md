@@ -2,7 +2,7 @@
 Código fuente de la tienda genérica creado desde Colombia para el proceso de formación MisiónTIC 2022 en alianza con la Universidad El Bosque.
 
 **Integrantes**
-- Leonardo Sanabrias
+- Leonardo Sanabria
 - Erika Murillo
 - Martin Santiago
 - Miguel Romero
