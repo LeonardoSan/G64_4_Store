@@ -1,6 +1,7 @@
 package co.edu.unbosque.TiendaVirtual.api;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,6 +31,11 @@ public class UsuariosApi {
 	@GetMapping("/listar")
 	public List<Usuarios> listar() {
 		return usuariosDao.findAll();
+	}
+	
+	@GetMapping("/consultar/{id}")
+	public Optional<Usuarios> consultar(@PathVariable("id") Integer id) {
+		return usuariosDao.findById(id);
 	}
 	
 	@DeleteMapping("/eliminar/{id}")
