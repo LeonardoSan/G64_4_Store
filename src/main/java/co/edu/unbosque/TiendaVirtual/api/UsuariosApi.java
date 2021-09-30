@@ -34,12 +34,12 @@ public class UsuariosApi {
 	}
 	
 	@GetMapping("/consultar/{id}")
-	public Optional<Usuarios> consultar(@PathVariable("id") Integer id) {
+	public Optional<Usuarios> consultar(@PathVariable("id") Long id) {
 		return usuariosDao.findById(id);
 	}
 	
 	@DeleteMapping("/eliminar/{id}")
-	public void eliminar(@PathVariable("id") Integer id) {
+	public void eliminar(@PathVariable("id") Long id) {
 		usuariosDao.deleteById(id);
 	}
 

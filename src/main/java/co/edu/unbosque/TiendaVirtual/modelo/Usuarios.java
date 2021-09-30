@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class Usuarios {
 	
 	@Id
-	private Integer cedula_usuario;
+	private Long cedula_usuario;
 	private String email_usuario;
 	private String nombre_usuario;
 	private String usuario;
@@ -16,7 +16,7 @@ public class Usuarios {
 	public long getCedula_usuario() {
 		return cedula_usuario;
 	}
-	public void setCedula_usuario(Integer cedula_usuario) {
+	public void setCedula_usuario(Long cedula_usuario) {
 		this.cedula_usuario = cedula_usuario;
 	}
 	public String getEmail_usuario() {
