@@ -22,7 +22,7 @@
 	<div class="container">
         <div class="forms-container">
             <div class="signin">
-                <form action="" method="POST" class="sign-in-form">
+                <form action="checking.jsp" method="POST" class="sign-in-form">
                     <div class="logo noselect">
                     <a href="./">
                         <img class="logo-img" src="https://cdn.glitch.com/035904e0-5072-486e-aa88-45d03ef24105%2FstoreLogo.png?v=1632054361351">
