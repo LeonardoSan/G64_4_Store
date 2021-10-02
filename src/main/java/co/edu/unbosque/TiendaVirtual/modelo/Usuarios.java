@@ -16,7 +16,7 @@ public class Usuarios {
 	private Long id;
 	
 	@Column(nullable = false, unique = true)
-	private Float cedula_usuario;
+	private Long cedula_usuario;
 	
 	private String email_usuario;	
 	private String nombre_usuario;
@@ -34,10 +34,10 @@ public class Usuarios {
 		this.id = id;
 	}	
 	
-	public Float getCedula_usuario() {
+	public Long getCedula_usuario() {
 		return cedula_usuario;
 	}
-	public void setCedula_usuario(Float cedula_usuario) {
+	public void setCedula_usuario(Long cedula_usuario) {
 		this.cedula_usuario = cedula_usuario;
 	}
 	public String getEmail_usuario() {

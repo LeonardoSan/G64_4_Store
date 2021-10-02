@@ -40,7 +40,7 @@ public class AppController {
 	@GetMapping("/dash")
 	public String viewDashboard(Model model) {
 		Usuarios usuario = new Usuarios();
-		usuario.setNombre_usuario("Martin");
+		usuario.setNombre_usuario("Martin Santiago");
 		model.addAttribute("logUser", usuario);
 		return "dash";
 	}
