@@ -1,22 +1,43 @@
 package co.edu.unbosque.TiendaVirtual.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "usuarios")
 public class Usuarios {
 	
 	@Id
-	private Long cedula_usuario;
-	private String email_usuario;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(nullable = false, unique = true)
+	private Float cedula_usuario;
+	
+	private String email_usuario;	
 	private String nombre_usuario;
+	
+	@Column(name = "username", nullable = false, unique = true, length = 45)
 	private String usuario;
+	
+	@Column(nullable = false, length = 64)
 	private String password;
 	
-	public long getCedula_usuario() {
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}	
+	
+	public Float getCedula_usuario() {
 		return cedula_usuario;
 	}
-	public void setCedula_usuario(Long cedula_usuario) {
+	public void setCedula_usuario(Float cedula_usuario) {
 		this.cedula_usuario = cedula_usuario;
 	}
 	public String getEmail_usuario() {
