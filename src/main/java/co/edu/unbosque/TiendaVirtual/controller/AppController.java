@@ -38,7 +38,10 @@ public class AppController {
 	}
 	
 	@GetMapping("/dash")
-	public String viewDashboard() {
+	public String viewDashboard(Model model) {
+		Usuarios usuario = new Usuarios();
+		usuario.setNombre_usuario("Martin");
+		model.addAttribute("logUser", usuario);
 		return "dash";
 	}
 	
