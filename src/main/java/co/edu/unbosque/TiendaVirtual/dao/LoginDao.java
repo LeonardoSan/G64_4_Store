@@ -11,21 +11,46 @@ public class LoginDao {
 	public static boolean validar(Usuarios usuario) {
 		boolean status = false;
 		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
 		try {
-			Connection con = ConnectionProvider.getConnection();
+			con = ConnectionProvider.getConnection();
 			
-			PreparedStatement ps = con.prepareStatement(
-					"SELECT * FROM `usuarios` WHERE nombre_usuarios=? AND password=?");
+			ps = con.prepareStatement(
+					"SELECT cedula_usuario, usuario, password FROM `usuarios` WHERE usuario=? AND password=?");
 			
-			ps.setString(1, usuario.getNombre_usuario());
+			ps.setString(1, usuario.getUsuario());
 			ps.setString(2, usuario.getPassword());
 			
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				
+			}
 			
 			status = rs.next();
-		} catch (Exception e) {}
-		
-		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				
+				if (ps != null) {
+					ps.close();
+				}
+				
+				if (con != null) {
+					con.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+				
 		return status;
 		
 	}
