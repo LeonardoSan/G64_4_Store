@@ -13,39 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unbosque.TiendaVirtual.dao.UsuariosDao;
-import co.edu.unbosque.TiendaVirtual.modelo.Usuarios;
+import co.edu.unbosque.TiendaVirtual.model.UsuarioModel;
+import co.edu.unbosque.TiendaVirtual.repositories.UsuarioRepository;
 
 @RestController
 @RequestMapping("usuarios")
-public class UsuariosApi {
+public class UsuarioService {
 
 	@Autowired
-	private UsuariosDao usuariosDao;
+	private UsuarioRepository usuarioRepository;
 	
 	@PostMapping("/guardar")
-	public void guardar(@RequestBody Usuarios usuarios) {
-		usuariosDao.save(usuarios);
+	public void guardar(@RequestBody UsuarioModel usuarios) {
+		usuarioRepository.save(usuarios);
 	}
 	
 	@GetMapping("/listar")
-	public List<Usuarios> listar() {
-		return usuariosDao.findAll();
+	public List<UsuarioModel> listar() {
+		return usuarioRepository.findAll();
 	}
 	
 	@GetMapping("/consultar/{id}")
-	public Optional<Usuarios> consultar(@PathVariable("id") Long id) {
-		return usuariosDao.findById(id);
+	public Optional<UsuarioModel> consultar(@PathVariable("id") Long id) {
+		return usuarioRepository.findById(id);
 	}
 	
 	@DeleteMapping("/eliminar/{id}")
 	public void eliminar(@PathVariable("id") Long id) {
-		usuariosDao.deleteById(id);
+		usuarioRepository.deleteById(id);
 	}
 
 	@PutMapping("/actualizar")
-	public void actualizar(@RequestBody Usuarios usuarios) {
-		usuariosDao.save(usuarios);
+	public void actualizar(@RequestBody UsuarioModel usuarioModel) {
+		usuarioRepository.save(usuarioModel);
 	}
 	
 	

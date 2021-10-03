@@ -1,4 +1,4 @@
-package co.edu.unbosque.TiendaVirtual.modelo;
+package co.edu.unbosque.TiendaVirtual.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuarios {
+public class UsuarioModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

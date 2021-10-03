@@ -1,18 +1,18 @@
-package co.edu.unbosque.TiendaVirtual.others;
+package co.edu.unbosque.TiendaVirtual.userDetails;
 
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import co.edu.unbosque.TiendaVirtual.modelo.Usuarios;
+import co.edu.unbosque.TiendaVirtual.model.UsuarioModel;
 
 @SuppressWarnings("serial")
 public class CustomUserDetails implements UserDetails {
 
-	private Usuarios usuario;
+	private UsuarioModel usuario;
 	
-	public CustomUserDetails(Usuarios usuario) {
+	public CustomUserDetails(UsuarioModel usuario) {
 		this.usuario = usuario;
 	}
 	
