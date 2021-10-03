@@ -23,6 +23,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
 	
+	String[] resources = new String[]{
+            "/include/**","/css/**","/icons/**","/images/**","/js/**","/layer/**"
+    };
+	
+	
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new CustomUserDetailsService();		
@@ -50,8 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/dash").authenticated()
-			.anyRequest().permitAll()
+			.antMatchers(resources).permitAll()
+			.antMatchers("/", "/index", "/register", "/process_register").permitAll()
+			.anyRequest().authenticated()
 			.and()
 			.formLogin()
 				.loginPage("/")
@@ -60,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.defaultSuccessUrl("/dash")
 			.and()
 			.logout().logoutSuccessUrl("/index.html?logout").permitAll();
+		
 	}
 	
 }

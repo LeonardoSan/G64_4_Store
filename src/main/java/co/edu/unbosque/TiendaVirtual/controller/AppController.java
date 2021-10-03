@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -43,13 +44,12 @@ public class AppController {
 	}
 	
 	@GetMapping("/dash/clientes")
-	public String viewClientes(Model model) {
-		
-		ClienteModel cliente = new ClienteModel();
-		
+	public String viewClientes(@CookieValue(value = "username", defaultValue = "Invitado") String username, Model model) {
+			
 		List<ClienteModel> listClients = clienteRepository.findAll();
 		
 		model.addAttribute("listClients", listClients);
+		model.addAttribute("username", username);
 		
 		return "clientes";
 	}
