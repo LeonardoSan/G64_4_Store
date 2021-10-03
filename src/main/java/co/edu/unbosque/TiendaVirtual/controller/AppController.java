@@ -32,24 +32,17 @@ public class AppController {
 	@GetMapping("/dash")
 	public String viewDashboard(Model model) {
 		
-		UsuarioModel usuario = new UsuarioModel();
-		
 		List<UsuarioModel> listUsers = usuarioRepository.findAll();
-		
-		usuario.setNombre_usuario("Martin Santiago");
-		model.addAttribute("logUser", usuario);
 		model.addAttribute("listUsers", listUsers);
 		
 		return "dash";
 	}
 	
 	@GetMapping("/dash/clientes")
-	public String viewClientes(@CookieValue(value = "username", defaultValue = "Invitado") String username, Model model) {
+	public String viewClientes(Model model) {
 			
 		List<ClienteModel> listClients = clienteRepository.findAll();
-		
 		model.addAttribute("listClients", listClients);
-		model.addAttribute("username", username);
 		
 		return "clientes";
 	}
