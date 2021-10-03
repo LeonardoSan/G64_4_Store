@@ -1,8 +1,8 @@
 <section th:fragment="moduloUsuarios">
-	<div class="container-fluid">
-	
+	<div class="container-fluid" style="margin-top: 20px;">
 		<div>
-			<h1>Usuarios</h1>
+			<h1 class="d-inline-block">Usuarios</h1>
+			<button type="button" class="d-inline-block btn btn-outline-primary btn-sm" style="margin-left: 20px; margin-top: -12px;">Añadir un usuario</button>
 		</div>
 		
 		<div>
@@ -14,15 +14,19 @@
 					      <th scope="col">Nombre</th>
 					      <th scope="col">Correo</th>
 					      <th scope="col">Usuario</th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="user: ${listUsers}">
-						<td th:text="${user.id}">User ID</td>
-						<td th:text="${user.cedula_usuario}">Cedula</td>
-						<td th:text="${user.nombre_usuario}">Nombre</td>
-						<td th:text="${user.email_usuario}">Correo</td>
-						<td th:text="${user.usuario}">Usuario</td>
+						<td th:text="${user.id}" style="vertical-align: middle;">User ID</td>
+						<td th:text="${user.cedula_usuario}" style="vertical-align: middle;">Cedula</td>
+						<td th:text="${user.nombre_usuario}" style="vertical-align: middle;">Nombre</td>
+						<td th:text="${user.email_usuario}" style="vertical-align: middle;">Correo</td>
+						<td th:text="${user.usuario}" style="vertical-align: middle;">Usuario</td>
+						<td><button type="button" class="btn btn-outline-success btn-sm">Modificar</button></td>
+						<td><button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button></td>
 					</tr>				
 				</tbody>
 			</table>

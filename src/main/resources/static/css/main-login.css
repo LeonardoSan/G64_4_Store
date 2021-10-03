@@ -148,6 +148,7 @@ form.sign-in-form {
     padding: .7rem 0;
     font-size: 1rem;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .problem-text:checked {
