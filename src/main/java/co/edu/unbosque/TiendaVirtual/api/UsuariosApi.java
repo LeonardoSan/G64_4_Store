@@ -47,4 +47,6 @@ public class UsuariosApi {
 	public void actualizar(@RequestBody Usuarios usuarios) {
 		usuariosDao.save(usuarios);
 	}
+	
+	
 }
