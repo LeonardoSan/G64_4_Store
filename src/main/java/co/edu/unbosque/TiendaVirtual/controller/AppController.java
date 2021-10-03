@@ -8,14 +8,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import co.edu.unbosque.TiendaVirtual.model.ClienteModel;
 import co.edu.unbosque.TiendaVirtual.model.UsuarioModel;
+import co.edu.unbosque.TiendaVirtual.repositories.ClienteRepository;
 import co.edu.unbosque.TiendaVirtual.repositories.UsuarioRepository;
 
 @Controller
 public class AppController {
 
 	@Autowired
-	private UsuarioRepository usuarioDao;
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 	@GetMapping("")
 	public String viewHomePage() {
@@ -27,13 +33,25 @@ public class AppController {
 		
 		UsuarioModel usuario = new UsuarioModel();
 		
-		List<UsuarioModel> listUsers = usuarioDao.findAll();
+		List<UsuarioModel> listUsers = usuarioRepository.findAll();
 		
 		usuario.setNombre_usuario("Martin Santiago");
 		model.addAttribute("logUser", usuario);
 		model.addAttribute("listUsers", listUsers);
 		
 		return "dash";
+	}
+	
+	@GetMapping("/dash/clientes")
+	public String viewClientes(Model model) {
+		
+		ClienteModel cliente = new ClienteModel();
+		
+		List<ClienteModel> listClients = clienteRepository.findAll();
+		
+		model.addAttribute("listClients", listClients);
+		
+		return "clientes";
 	}
 	
 	@GetMapping("/register")
@@ -50,7 +68,7 @@ public class AppController {
 		usuario.setPassword(encodedPassword);
 		
 		
-		usuarioDao.save(usuario);
+		usuarioRepository.save(usuario);
 		
 		return "register_success";
 	}

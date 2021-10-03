@@ -11,19 +11,19 @@ public class ClienteModel {
 	private Long id;
 	
 	@Column(nullable = false, unique = true)
-	private Long cedula;
+	private Long cedula; //!< Customer identification number
 	
 	@Column(nullable = false)
-	private String nombre;
+	private String nombre; //!< Customer name
 	
 	@Column(nullable = false)
-	private String direccion;
+	private String direccion; //!< Customer address
 	
 	@Column(nullable = false)
-	private String telefono;
+	private String telefono; //!< Customer phone's number
 	
 	@Column(nullable = false)
-	private String email;
+	private String email; //!< Customer email
 
 	public Long getId() {
 		return id;
