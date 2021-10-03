@@ -1,4 +1,4 @@
-package co.edu.unbosque.TiendaVirtual.others;
+package co.edu.unbosque.TiendaVirtual;
 
 import javax.sql.DataSource;
 
@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import co.edu.unbosque.TiendaVirtual.userDetails.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity

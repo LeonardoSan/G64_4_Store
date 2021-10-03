@@ -1,10 +1,10 @@
-package co.edu.unbosque.TiendaVirtual.modelo;
+package co.edu.unbosque.TiendaVirtual.model;
 
 import javax.persistence.*;
 
 @Entity
 @Table (name = "clientes")
-public class Clientes {
+public class ClienteModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -13,39 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unbosque.TiendaVirtual.dao.ClientesDao;
-import co.edu.unbosque.TiendaVirtual.modelo.Clientes;
+import co.edu.unbosque.TiendaVirtual.model.ClienteModel;
+import co.edu.unbosque.TiendaVirtual.repositories.ClienteRepository;
 
 @RestController
 @RequestMapping("clientes")
-public class ClientesApi {
+public class ClienteService {
 
 	@Autowired
-	private ClientesDao clientesDao;
+	private ClienteRepository clienteRepository;
 	
 	@PostMapping("/guardar")
-	public void guardar(@RequestBody Clientes cliente) {
-		clientesDao.save(cliente);
+	public void guardar(@RequestBody ClienteModel cliente) {
+		clienteRepository.save(cliente);
 	}
 	
 	@GetMapping("/listar")
-	public List<Clientes> listar() {
-		return clientesDao.findAll();
+	public List<ClienteModel> listar() {
+		return clienteRepository.findAll();
 	}
 	
 	@GetMapping("/consultar/{id}")
-	public Optional<Clientes> consultar(@PathVariable("id") Long id) {
-		return clientesDao.findById(id);
+	public Optional<ClienteModel> consultar(@PathVariable("id") Long id) {
+		return clienteRepository.findById(id);
 	}
 	
 	@DeleteMapping("/eliminar/{id}")
 	public void eliminar(@PathVariable("id") Long id) {
-		clientesDao.deleteById(id);
+		clienteRepository.deleteById(id);
 	}
 	
 	@PutMapping("/actualizar")
-	public void actualizar(@RequestBody Clientes cliente) {
-		clientesDao.save(cliente);
+	public void actualizar(@RequestBody ClienteModel cliente) {
+		clienteRepository.save(cliente);
 	}
 	
 }

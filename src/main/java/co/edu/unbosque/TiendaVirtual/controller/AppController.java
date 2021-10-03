@@ -8,15 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import co.edu.unbosque.TiendaVirtual.dao.UsuariosDao;
-import co.edu.unbosque.TiendaVirtual.modelo.Usuarios;
+import co.edu.unbosque.TiendaVirtual.model.UsuarioModel;
+import co.edu.unbosque.TiendaVirtual.repositories.UsuarioRepository;
 
 @Controller
 public class AppController {
 
 	@Autowired
-	private UsuariosDao usuarioDao;
+	private UsuarioRepository usuarioDao;
 	
 	@GetMapping("")
 	public String viewHomePage() {
@@ -26,9 +25,9 @@ public class AppController {
 	@GetMapping("/dash")
 	public String viewDashboard(Model model) {
 		
-		Usuarios usuario = new Usuarios();
+		UsuarioModel usuario = new UsuarioModel();
 		
-		List<Usuarios> listUsers = usuarioDao.findAll();
+		List<UsuarioModel> listUsers = usuarioDao.findAll();
 		
 		usuario.setNombre_usuario("Martin Santiago");
 		model.addAttribute("logUser", usuario);
@@ -39,13 +38,13 @@ public class AppController {
 	
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
-		model.addAttribute("user", new Usuarios());
+		model.addAttribute("user", new UsuarioModel());
 		
 		return "signup_form";
 	}
 	
 	@PostMapping("/process_register")
-	public String processRegister(Usuarios usuario) {
+	public String processRegister(UsuarioModel usuario) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(usuario.getPassword());
 		usuario.setPassword(encodedPassword);
