@@ -3,17 +3,18 @@ Código fuente de la tienda genérica creado desde Colombia para el proceso de f
 
 El proyecto corre en el backend en un servidor Tomcat con Apache.
 
-**Tecnologías**
+## Tecnologías
 
 - Maven
-- SpringBoot 2
+- Spring Boot 2 - Spring Security
 - Thymeleaf
 - JPA
 - Swagger
 
-**Integrantes**
-- Leonardo Sanabria
-- Erika Murillo
+## Integrantes
+La metodología Scrum fue utilizada durante el desarrollo de este proyecto. Los miembros del equipo son:
+
+- Leonardo Sanabria (Scrum Master)
 - Martin Santiago
-- Miguel Romero
-- Daniela Archila
+
+Los estudiantes Daniela Archila, Erika Murillo y Miguel Romero no han asistido a las reuniones diarias del Scrum ni a las sesiones de clases con el MinTIC. Si no se integran antes del envío del tercer Sprint serán eliminados automáticamente del equipo.
