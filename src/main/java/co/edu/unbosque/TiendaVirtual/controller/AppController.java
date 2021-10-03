@@ -1,16 +1,14 @@
 package co.edu.unbosque.TiendaVirtual.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-
 import co.edu.unbosque.TiendaVirtual.dao.UsuariosDao;
 import co.edu.unbosque.TiendaVirtual.modelo.Usuarios;
 
@@ -29,15 +27,14 @@ public class AppController {
 	public String viewDashboard(Model model) {
 		
 		Usuarios usuario = new Usuarios();
+		
+		List<Usuarios> listUsers = usuarioDao.findAll();
+		
 		usuario.setNombre_usuario("Martin Santiago");
 		model.addAttribute("logUser", usuario);
+		model.addAttribute("listUsers", listUsers);
 		
 		return "dash";
-	}
-	
-	@GetMapping("/test")
-	public String testing() {
-		return "header";
 	}
 	
 	@GetMapping("/register")
@@ -57,6 +54,5 @@ public class AppController {
 		usuarioDao.save(usuario);
 		
 		return "register_success";
-				
 	}
 }
