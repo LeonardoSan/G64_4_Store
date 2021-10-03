@@ -30,11 +30,11 @@
                     </div>
                     
                         <h2 class="title">Iniciar sesión</h2>
-	                    <div th:if="${param.error}" class="alert alert-error">    
+	                    <div th:if="${param.error}" class="alert alert-danger">    
 	                    	Nombre de usuario y contraseña incorrectos.
 	                	</div>
 	                	<div th:if="${param.logout}" class="alert alert-success"> 
-	                    	You have been logged out.
+	                    	Has cerrado sesión.
 	                	</div>
 	                    <div class="input-field">
 	                        <i class="fas fa-user"></i>
@@ -48,7 +48,7 @@
 	                    <input type="submit" value="Iniciar sesión" class="btn solid">
 					
                     
-                    <a href="/ayuda" target="_blank" class="problem-text"><p>Tengo problemas para iniciar sesión</p></a>
+                    <p><a href="/ayuda" target="_blank" class="problem-text">Tengo problemas para iniciar sesión</a></p>
                 
                 </form>
             </div>

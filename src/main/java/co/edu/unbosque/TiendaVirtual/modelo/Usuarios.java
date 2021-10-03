@@ -18,7 +18,7 @@ public class Usuarios {
 	@Column(nullable = false, unique = true)
 	private Long cedula_usuario;
 	
-	private String email_usuario;	
+	private String email_usuario;
 	private String nombre_usuario;
 	
 	@Column(name = "username", nullable = false, unique = true, length = 45)

@@ -1,15 +1,14 @@
 package co.edu.unbosque.TiendaVirtual.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import co.edu.unbosque.TiendaVirtual.dao.UsuariosDao;
 import co.edu.unbosque.TiendaVirtual.modelo.Usuarios;
 
@@ -19,19 +18,6 @@ public class AppController {
 	@Autowired
 	private UsuariosDao usuarioDao;
 	
-	@Bean
-	public ClassLoaderTemplateResolver secondaryTemplateResolver() {
-	    ClassLoaderTemplateResolver secondaryTemplateResolver = new ClassLoaderTemplateResolver();
-	    secondaryTemplateResolver.setPrefix("templates/");
-	    secondaryTemplateResolver.setSuffix(".html");
-	    secondaryTemplateResolver.setTemplateMode(TemplateMode.HTML);
-	    secondaryTemplateResolver.setCharacterEncoding("UTF-8");
-	    secondaryTemplateResolver.setOrder(2);
-	    secondaryTemplateResolver.setCheckExistence(true);
-	        
-	    return secondaryTemplateResolver;
-	}
-	
 	@GetMapping("")
 	public String viewHomePage() {
 		return "index.html";
@@ -39,15 +25,16 @@ public class AppController {
 	
 	@GetMapping("/dash")
 	public String viewDashboard(Model model) {
+		
 		Usuarios usuario = new Usuarios();
+		
+		List<Usuarios> listUsers = usuarioDao.findAll();
+		
 		usuario.setNombre_usuario("Martin Santiago");
 		model.addAttribute("logUser", usuario);
+		model.addAttribute("listUsers", listUsers);
+		
 		return "dash";
-	}
-	
-	@GetMapping("/test")
-	public String testing() {
-		return "header";
 	}
 	
 	@GetMapping("/register")
@@ -67,6 +54,5 @@ public class AppController {
 		usuarioDao.save(usuario);
 		
 		return "register_success";
-				
 	}
 }
