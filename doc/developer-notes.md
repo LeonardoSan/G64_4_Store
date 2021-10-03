@@ -1,8 +1,8 @@
 # Developer notes - Notas de desarrollador
-Estas notas indican las convenciones y estilos que se utilizan al momento de escribir código en este proyecto. Para efectos prácticos será escrito en español, pero también puede encontrar la versión en inglés. Los programadores, desarrolladores y cualquier contribuyente al código en general de este proyecto se debe acoplar a estas convenciones para efectos de escalabilidad y consistencia. Esta buena práctica incide en la atemporalidad de su desarrollo, la vida externa de los programadores y las diferentes estructuras mentales de cada uno.
+Estas notas indican las convenciones y estilos que se utilizan al momento de escribir código en este proyecto. Para efectos prácticos será escrito en español, pero también puedes encontrar la versión en inglés. Los programadores, desarrolladores y cualquier contribuyente al código en general de este proyecto se debe acoplar a estas convenciones para efectos de escalabilidad y consistencia.
 
 ## Estilo de Codificación (General)
-Este proyecto al ser principalmente escrito desde cero, está pensando en ser desarrollado desde sus bases con buenas prácticas de programación y codificación para su escalabilidad y posterior integración con otros desarrolladores. El objetivo es mantener una consistencia que con el transcurrir del tiempo mantendrá un buen nivel de legiblidad y complementación con otros programadores.
+Este proyecto al ser principalmente escrito desde cero, está pensando en ser desarrollado desde sus bases con buenas prácticas de programación y codificación para su escalabilidad y posterior integración con otros desarrolladores. El objetivo es mantener una consistencia que con el transcurrir del tiempo mantenga un buen nivel de legiblidad y complementación con otros programadores.
 
 Cuando escribas código, por favor, ten presente estas guías de estilo.
 
@@ -18,10 +18,10 @@ Cuando escribas código, por favor, ten presente estas guías de estilo.
 
 - **Convenciones para el nombramiento de símbolos**.
 
-    - El nombre de las variables deben ser en español y camelcase (miVariable).
+    - Los nombres de las variables deben ser en inglés y camelcase (miVariable).
         - Las variable globales deben tener `g` como prefijo.
     - Los nombres de constantes en tiempo de compilación deben ser totalmente uppercase, y usar un `_` para separar las palabras.
-    - Los nombres de las funciones deben ser UpperCamelCase (PascalCase).
+    - Los nombres de las funciones deben ser en inglés y UpperCamelCase (PascalCase).
 
 - **Detalles adicionales**
 
@@ -30,15 +30,14 @@ Cuando escribas código, por favor, ten presente estas guías de estilo.
 Código de bloque de ejemplo:
 
 ```java
-new
-        gBuildNumber = 0,
-        mainString[12],
-        ocassionalTour,
-Float:  areaSquare = 0.0;
+int gBuildNumber = 0;
+String mainText[12],
+Long ocassionalTour,
+Float areaSquare = 0.0;
 
-public OnPlayerWalk(playerid, n)
+public boolean OnPlayerWalk(playerid, n)
 {
-    for (new i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
         new totalSum = 0;
 
         if (!Something()) return false;
@@ -55,7 +54,7 @@ public OnPlayerWalk(playerid, n)
 }
 ```
 
-## Estilo de codificación (Comentarios)
+## Estilo de Codificación (Comentarios)
 Los comentarios son parte importante de la programación en equipo. Es obligatorio que describas el uso de funciones, variables y métodos tan eficaz como sea posible.
 
 Por ejemplo, para describir una función usa:
@@ -78,24 +77,24 @@ public function(arg1, const arg2, String:&arg3)
 
 En general, para describir componentes de tu código usa:
 
-```cpp
+```java
 /**
  * Alerts are for notifying old versions if they become too obsolete and
  * need to upgrade. The message is displayed in the status bar.
  * @see GetWarnings()
  */
- stock Alert();
+ public void Alert();
 ```
 
 Para describir una variable usa:
 
-```cpp
+```java
 //! Description before the var
 new var;
 ```
 o
-```cpp
-new var; //!< Description after the var
+```java
+int var; //!< Description after the var
 ```
 
 Este documento está en construcción y seguirá modificándose en las primeras fases del proyecto. Si tienes alguna propuesta, haz un Pull Request a la rama main con la modificación a este archivo y su respectiva explicación.
