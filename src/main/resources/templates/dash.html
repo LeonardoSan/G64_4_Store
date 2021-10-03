@@ -11,12 +11,19 @@
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="/css/main.css">
 	
+	<link
 </head>
 <body>
 	<div th:insert="/header.html :: header"> </div>
 	
-	<div th:insert="/usuarios.html :: moduloUsuarios"> </div>
+	<div class="tab-content" id="modulesTab">
+		<div th:insert="/modules/usuarios.html :: moduloUsuarios" class="tab-pane fade show active" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab"> </div>
+		<div th:insert="/modules/clientes.html :: moduloClientes" class="tab-pane fade" id="clientes" role="tabpanel" aria-labelledby="clientes-tab"> </div>
+	</div>
+	
+	
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+	<script src="/js/dashboard.js"></script>
 </body>
 </html>
