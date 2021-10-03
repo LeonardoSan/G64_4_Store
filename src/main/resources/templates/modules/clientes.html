@@ -1,29 +1,35 @@
 <section th:fragment="moduloClientes">
-	<div class="container-fluid">
+	<div class="container-fluid" style="margin-top: 20px;">
 		<div>
-			<h1>Clientes</h1>
+			<h1 class="d-inline-block">Clientes</h1>
+			<button type="button" class="d-inline-block btn btn-outline-primary btn-sm" style="margin-left: 20px; margin-top: -12px;">Añadir un cliente</button>
 		</div>
 		
 		<div>
 			<table class="table">
+				<caption>Lista de clientes</caption>
 				<thead>
-					<tr>
+					<tr class="table-light">
 						<th scope="col">#</th>
 					      <th scope="col">Cédula</th>
 					      <th scope="col">Nombre</th>
 					      <th scope="col">Correo</th>
 					      <th scope="col">Dirección</th>
 					      <th scope="col">Teléfono</th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="client: ${listClients}">
-						<td th:text="${client.id}">Client ID</td>
-						<td th:text="${client.cedula}">Cedula</td>
-						<td th:text="${client.nombre}">Nombre</td>
-						<td th:text="${client.email}">Correo</td>
-						<td th:text="${client.direccion}">Direccion</td>
-						<td th:text="${client.telefono}">Telefono</td>
+						<td th:text="${client.id}" style="vertical-align: middle;">Client ID</td>
+						<td th:text="${client.cedula}" style="vertical-align: middle;">Cedula</td>
+						<td th:text="${client.nombre}" style="vertical-align: middle;">Nombre</td>
+						<td th:text="${client.email}" style="vertical-align: middle;">Correo</td>
+						<td th:text="${client.direccion}" style="vertical-align: middle;">Direccion</td>
+						<td th:text="${client.telefono}" style="vertical-align: middle;">Telefono</td>
+						<td><button type="button" class="btn btn-outline-success btn-sm">Modificar</button></td>
+						<td><button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button></td>
 					</tr>				
 				</tbody>
 			</table>
