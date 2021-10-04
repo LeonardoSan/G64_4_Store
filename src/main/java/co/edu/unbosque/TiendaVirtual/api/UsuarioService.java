@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +25,11 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 	
 	@PostMapping("/guardar")
-	public void guardar(@RequestBody UsuarioModel usuarios) {
-		usuarioRepository.save(usuarios);
+	public void guardar(@RequestBody UsuarioModel usuario) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(usuario.getPassword());
+		usuario.setPassword(encodedPassword);
+		usuarioRepository.save(usuario);
 	}
 	
 	@GetMapping("/listar")
@@ -40,7 +44,13 @@ public class UsuarioService {
 	
 	@DeleteMapping("/eliminar/{id}")
 	public void eliminar(@PathVariable("id") Long id) {
-		usuarioRepository.deleteById(id);
+		try{
+			usuarioRepository.deleteById(id);
+		}
+		catch(Exception ex) {
+			System.out.println (ex.getMessage());
+		}
+		
 	}
 
 	@PutMapping("/actualizar")
