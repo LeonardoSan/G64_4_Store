@@ -26,11 +26,12 @@
 						<td th:text="${user.email_usuario}" style="vertical-align: middle;">Correo</td>
 						<td th:text="${user.usuario}" style="vertical-align: middle;">Usuario</td>
 						<td><button type="button" class="btn btn-outline-success btn-sm">Modificar</button></td>
-						<td><button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button></td>
+						<td><button type="button" class="btn btn-outline-danger btn-sm" th:attr="onclick=|eliminar('${user.id}')|" >Eliminar</button></td>
 					</tr>				
 				</tbody>
 			</table>
 		</div>
 	</div>
 </section>
+
 
