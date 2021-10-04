@@ -55,7 +55,12 @@ public class UsuarioService {
 
 	@PutMapping("/actualizar")
 	public void actualizar(@RequestBody UsuarioModel usuarioModel) {
-		usuarioRepository.save(usuarioModel);
+		try{
+			usuarioRepository.save(usuarioModel);
+		}
+		catch(Exception ex) {
+			System.out.println (ex.getMessage());
+		}
 	}
 	
 	
