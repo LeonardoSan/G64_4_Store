@@ -1,17 +1,24 @@
 <section th:fragment="moduloUsuarios">
 	<div class="container-fluid" style="margin-top: 20px;">
 		<div class="row">
-		
 			<div class="col">
-			<h1 class="d-inline-block">Usuarios</h1>
-			<button type="button" class="d-inline-block btn btn-outline-primary btn-sm mx-3 mb-3" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">Añadir un usuario</button>
-			<button type="button" class="d-inline-block btn btn-outline-danger btn-sm mb-3" disabled>Eliminar seleccionados</button>
+				<h1 class="d-inline-block">Usuarios</h1>
+		
+				<button type="button" class="d-inline-block btn btn-outline-primary btn-sm mx-3 mb-3" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">Añadir un usuario</button>
+				<button type="button" class="d-inline-block btn btn-outline-danger btn-sm mb-3" disabled>Eliminar seleccionados</button>
+				
+			</div>
+			
+			<div class="col-3" style="align-self: center">
+				<form class="d-flex">
+			        <input class="form-control form-control-sm me-2" type="search" placeholder="Buscar por cédula" aria-label="Search">
+			        <button class="btn btn-outline-primary btn-sm" type="submit">Buscar</button>
+			      </form>
 			</div>
 		</div>
 		
-		<div>
+		<div class="tableWrap">
 			<table class="table table-hover table-responsive">
-				<caption>Lista de usuarios</caption>
 				<thead>
 					<tr class="table-light">
 						<th scope="col"></th>
@@ -24,7 +31,7 @@
 					    <th scope="col"></th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="overflow-auto">
 					<tr th:each="user: ${listUsers}">
 						<td><input class="form-check-input" type="checkbox" value="" id="" style="vertical-align: middle;"></td>
 						<td th:text="${user.id}" style="vertical-align: middle;">User ID</td>

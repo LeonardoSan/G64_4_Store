@@ -17,3 +17,14 @@
 .Header-nav li a {
 	text-decoration: none;
 }
+
+/* Set a fixed scrollable wrapper */
+.tableWrap {
+  height: 400px;
+  overflow: auto;
+}
+/* Set header to stick to the top of the container. */
+thead tr th {
+  position: sticky;
+  top: 0;
+}
