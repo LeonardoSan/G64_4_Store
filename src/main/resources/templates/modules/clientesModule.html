@@ -1,0 +1,44 @@
+<section th:fragment="moduloClientes">
+	<div class="container-fluid" style="margin-top: 20px;">
+		<div class="row">
+		
+			<div class="col">
+			<h1 class="d-inline-block">Clientes</h1>
+			<button type="button" class="d-inline-block btn btn-outline-primary btn-sm mx-3 mb-3">Añadir un cliente</button>
+			<button type="button" class="d-inline-block btn btn-outline-danger btn-sm mb-3" disabled>Eliminar seleccionados</button>
+			</div>			
+		</div>
+		
+		<div>
+			<table class="table table-hover table-responsive">
+				<caption>Lista de clientes</caption>
+				<thead>
+					<tr class="table-light">
+						<th scope="col"></th>
+						<th scope="col">#</th>
+					    <th scope="col">Cédula</th>
+					    <th scope="col">Nombre</th>
+					    <th scope="col">Correo</th>
+					    <th scope="col">Dirección</th>
+					    <th scope="col">Teléfono</th>
+					    <th scope="col"></th>
+					    <th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="client: ${listClients}">
+						<td><input class="form-check-input" type="checkbox" value="" id="" style="vertical-align: middle;"></td>
+						<td th:text="${client.id}" style="vertical-align: middle;">Client ID</td>
+						<td th:text="${client.cedula}" style="vertical-align: middle;">Cedula</td>
+						<td th:text="${client.nombre}" style="vertical-align: middle;">Nombre</td>
+						<td th:text="${client.email}" style="vertical-align: middle;">Correo</td>
+						<td th:text="${client.direccion}" style="vertical-align: middle;">Direccion</td>
+						<td th:text="${client.telefono}" style="vertical-align: middle;">Telefono</td>
+						<td><button type="button" class="btn btn-outline-success btn-sm">Modificar</button></td>
+						<td><button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button></td>
+					</tr>				
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
