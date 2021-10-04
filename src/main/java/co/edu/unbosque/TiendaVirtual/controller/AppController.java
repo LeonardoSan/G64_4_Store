@@ -31,9 +31,9 @@ public class AppController {
 	
 	@GetMapping("/dash")
 	public String viewDashboard(Model model) {
-		
 		List<UsuarioModel> listUsers = usuarioRepository.findAll();
 		model.addAttribute("listUsers", listUsers);
+		model.addAttribute("user", new UsuarioModel());
 		
 		return "dash";
 	}
@@ -63,6 +63,6 @@ public class AppController {
 		
 		usuarioRepository.save(usuario);
 		
-		return "register_success";
+		return "redirect:/dash";
 	}
 }
