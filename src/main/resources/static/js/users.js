@@ -26,54 +26,17 @@ function eliminar(cedula){
 
 
 function editar(id, cedula_usuario, nombre_usuario, email_usuario, usuario){
-		document.getElementById('id').value = id;
-		document.getElementById('cedula_usuario2').value = cedula_usuario;
-		document.getElementById('email_usuario2').value = email_usuario;
-		document.getElementById('nombre_usuario2').value = nombre_usuario;
-		document.getElementById('usuario2').value = usuario;
+	document.getElementById('id').value = id;
+	document.getElementById('cedula_usuario2').value = cedula_usuario;
+	document.getElementById('email_usuario2').value = email_usuario;
+	document.getElementById('nombre_usuario2').value = nombre_usuario;
+	document.getElementById('usuario2').value = usuario;
 }
 
 $(document).ready(function(){
-		console.log('ready');
-		const formulario = document.getElementById('formulario');
-		formulario.addEventListener('submit', function(event){
-			console.log('submit');
-			
-			event.preventDefault();
-			
-			var cedula = document.getElementById('cedula_usuario').value;
-			cedula = parseFloat(cedula, 10);
-			var email_usuario = document.getElementById('email_usuario').value;
-			var nombre_usuario = document.getElementById('nombre_usuario').value;
-			var password = document.getElementById('password').value;
-			var usuario = document.getElementById('usuario').value;
-			
-			var datos = {
-					"cedula_usuario": cedula,
-					  "email_usuario": email_usuario,
-					  "nombre_usuario": nombre_usuario,
-					  "password": password,
-					  "usuario": usuario
-			}
-			
-			fetch('http://localhost:8080/usuarios/guardar', {
-				method: 'POST',
-				body: JSON.stringify(datos),
-				headers: {
-				      'Content-Type': 'application/json'
-				     
-				    }
-			})
-			.then(res => {
-				console.log(res);
-				if(res.status == 200)
-					location.reload();
-			});
+	console.log('ready');		
 		
-		});
-		
-		
-		const formularioEditar = document.getElementById('formularioEditar');
+		const formularioEditar = document.getElementById('modifyUserForm');
 		formularioEditar.addEventListener('submit', function(event){
 			console.log('submit editar');
 			
@@ -91,19 +54,19 @@ $(document).ready(function(){
 			var datos = {
 					"id": id,
 					"cedula_usuario": cedula,
-					  "email_usuario": email_usuario,
-					  "nombre_usuario": nombre_usuario,
-					  "password": password,
-					  "usuario": usuario
+					"email_usuario": email_usuario,
+					"nombre_usuario": nombre_usuario,
+					"password": password,
+					"usuario": usuario
 			}
+			
 			console.log(datos);
 			fetch('http://localhost:8080/usuarios/actualizar', {
 				method: 'PUT',
 				body: JSON.stringify(datos),
 				headers: {
 				      'Content-Type': 'application/json'
-				     
-				    }
+				}
 			})
 			.then(res => {
 				console.log(res);

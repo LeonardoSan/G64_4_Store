@@ -16,7 +16,7 @@
 					<tr class="table-light">
 						<th scope="col"></th>
 						<th scope="col">#</th>
-					    <th scope="col">Cédula</th>
+					    <th scope="col">C&eacute;dula</th>
 					    <th scope="col">Nombre</th>
 					    <th scope="col">Correo</th>
 					    <th scope="col">Usuario</th>
@@ -32,7 +32,7 @@
 						<td th:text="${user.nombre_usuario}" style="vertical-align: middle;">Nombre</td>
 						<td th:text="${user.email_usuario}" style="vertical-align: middle;">Correo</td>
 						<td th:text="${user.usuario}" style="vertical-align: middle;">Usuario</td>
-						<td><button type="button" class="btn btn-outline-success btn-sm">Modificar</button></td>
+						<td><button type="button" class="btn btn-outline-success btn-sm" th:attr="onclick=|editar('${user.id}', '${user.cedula_usuario}', '${user.nombre_usuario}', '${user.email_usuario}', '${user.usuario}')|" data-bs-toggle="modal" data-bs-target="#modificarUsuarioModal">Modificar</button></td>
 						<td><button type="button" class="btn btn-outline-danger btn-sm" th:attr="onclick=|eliminar('${user.id}')|" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button></td>
 					</tr>				
 				</tbody>
@@ -48,7 +48,7 @@
 		  <!-- Modal Header -->
 	      <div class="modal-header">
 	      	<i class="fas fa-user me-2"></i>
-	        <h5 class="modal-title" id="exampleModalLabel">Añadir un usuario</h5>
+	        <h5 class="modal-title" id="agregarUsuarioModalLabel">Añadir un usuario</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      
@@ -106,6 +106,75 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 	        <label for="submit-form" class="btn btn-primary">Agregar usuario</label>
+	      </div>
+	    </div>
+	</div>
+</div>
+
+
+<div th:fragment="moduloModificarUsuarios" class="modal fade" id="modificarUsuarioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modificarUsuarioModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+		
+		  <!-- Modal Header -->
+	      <div class="modal-header">
+	      	<i class="fas fa-user me-2"></i>
+	        <h5 class="modal-title" id="modificarUsuarioModalLabel">Modificar un usuario</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      
+	      
+	      <!-- Modal Body -->
+	      <div class="modal-body">
+	        <form id="modifyUserForm" style="max-width: 700px; margin: 0 auto;">
+	        	<input type="hidden" id="id" name="id">
+		        <div class="m-3">
+		        <div class="row">		        	
+		            <div class="form-group col">
+		                <label class="col-form-label" for="nombre_usuario">Username: </label>
+		                <input type="text" id="usuario2" name="usuario" class="form-control"
+		                            required minlength="2" maxlength="20"/>
+		            </div>
+		             
+		            <div class="form-group col">
+		                <div class="mb-3">
+		                	<label class="col-form-label" for="password">Password: </label>
+		                    <input type="password" id="password2" name="password" class="form-control"
+		                            required minlength="6" maxlength="20" disabled/>
+		                </div>
+		            </div>
+		         </div>
+		         
+		         <div class="row">
+		         	<div class="form-group col">
+		                <div class="mb-3">
+		                	<label class="col-form-label" for="email_usuario">E-mail: </label>
+		                    <input type="email" id="email_usuario2" name="email_usuario" class="form-control" required/>
+		                </div>
+		            </div>		         
+		         </div>
+		         
+		         <div class="row">
+		            <div class="form-group col">
+		               	<label class="col-form-label" for="nombre_usuario">Nombre completo: </label>
+		                <input type="text" class="form-control" id="nombre_usuario2" name="nombre_usuario"
+		                       required minlength="2" maxlength="32" />
+		            </div>
+		            
+		            <div class="form-group col">
+		                <label class="col-form-label" for="cedula_usuario2">Cédula: </label>
+		                <input type="text" id="cedula_usuario2" class="form-control"
+		                            required minlength="2" maxlength="20" />
+		            </div>
+		          </div>
+		        </div>
+		        
+		        <input type="submit" id="submit-modifyForm" class="hidden" style="display: none"/>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+	        <label for="submit-modifyForm" class="btn btn-primary">Modificar usuario</label>
 	      </div>
 	    </div>
 	</div>
