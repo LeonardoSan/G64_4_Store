@@ -10,7 +10,7 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-					      <th scope="col">Cédula</th>
+					      <th scope="col">C&eacute;dula</th>
 					      <th scope="col">Nombre</th>
 					      <th scope="col">Correo</th>
 					      <th scope="col">Usuario</th>
@@ -25,12 +25,56 @@
 						<td th:text="${user.nombre_usuario}" style="vertical-align: middle;">Nombre</td>
 						<td th:text="${user.email_usuario}" style="vertical-align: middle;">Correo</td>
 						<td th:text="${user.usuario}" style="vertical-align: middle;">Usuario</td>
-						<td><button type="button" class="btn btn-outline-success btn-sm">Modificar</button></td>
+						<td><button type="button" class="btn btn-outline-success btn-sm" th:attr="onclick=|editar('${user.id}', '${user.cedula_usuario}', '${user.nombre_usuario}', '${user.email_usuario}', '${user.usuario}')|" >Modificar</button></td>
 						<td><button type="button" class="btn btn-outline-danger btn-sm" th:attr="onclick=|eliminar('${user.id}')|" >Eliminar</button></td>
 					</tr>				
 				</tbody>
 			</table>
 		</div>
+		
+		<br>
+		<h2>Agregar usuarios</h2>
+	<form id="formulario">
+		<label for="cedula_usuario">C&eacute;dula</label>
+		<input type="text" id="cedula_usuario" name="cedula_usuario" required>
+		<br>
+		<label for="email_usuario">E-mail</label>
+		<input type="text" id="email_usuario" name="email_usuario" required>
+		<br>
+		<label for="nombre_usuario">Nombre</label>
+		<input type="text" id="nombre_usuario" name="nombre_usuario" required>
+		<br>
+		<label for="usuario">Usuario</label>
+		<input type="text" id="usuario" name="usuario" required>
+		<br>
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" required>
+		<br>
+		<button type="submit">Agregar</button>
+	</form>
+	
+	<br>
+	
+	<h2>Editar usuarios</h2>
+	<form id="formularioEditar">
+		<input type="hidden" id="id" namee="id">
+		<label for="cedula_usuario">C&eacute;dula</label>
+		<input type="text" id="cedula_usuario2" name="cedula_usuario" required>
+		<br>
+		<label for="email_usuario">E-mail</label>
+		<input type="text" id="email_usuario2" name="email_usuario" required>
+		<br>
+		<label for="nombre_usuario">Nombre</label>
+		<input type="text" id="nombre_usuario2" name="nombre_usuario" required>
+		<br>
+		<label for="usuario">Usuario</label>
+		<input type="text" id="usuario2" name="usuario" required>
+		<br>
+		<label for="password">Password</label>
+		<input type="password" id="password2" name="password" required>
+		<br>
+		<button type="submit">Editar</button>
+	</form>
 	</div>
 </section>
 
