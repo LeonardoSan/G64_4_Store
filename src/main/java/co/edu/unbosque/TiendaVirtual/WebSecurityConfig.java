@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 				.defaultSuccessUrl("/dash")
 			.and()
-			.logout().logoutSuccessUrl("/index.html?logout").permitAll();
+			.logout().logoutSuccessUrl("/").permitAll();
 		
 	}
 	

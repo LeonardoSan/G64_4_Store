@@ -1,8 +1,12 @@
 <section th:fragment="moduloClientes">
 	<div class="container-fluid" style="margin-top: 20px;">
-		<div>
+		<div class="row">
+		
+			<div class="col">
 			<h1 class="d-inline-block">Clientes</h1>
-			<button type="button" class="d-inline-block btn btn-outline-primary btn-sm" style="margin-left: 20px; margin-top: -12px;">Añadir un cliente</button>
+			<button type="button" class="d-inline-block btn btn-outline-primary btn-sm me-3" style="margin-left: 20px; margin-top: -12px;">Añadir un cliente</button>
+			<button type="button" class="d-inline-block btn btn-outline-danger btn-sm" style="margin-top: -12px;" disabled>Eliminar seleccionados</button>
+			</div>			
 		</div>
 		
 		<div>
@@ -10,18 +14,20 @@
 				<caption>Lista de clientes</caption>
 				<thead>
 					<tr class="table-light">
+						<th scope="col"></th>
 						<th scope="col">#</th>
-					      <th scope="col">Cédula</th>
-					      <th scope="col">Nombre</th>
-					      <th scope="col">Correo</th>
-					      <th scope="col">Dirección</th>
-					      <th scope="col">Teléfono</th>
-					      <th scope="col"></th>
-					      <th scope="col"></th>
+					    <th scope="col">Cédula</th>
+					    <th scope="col">Nombre</th>
+					    <th scope="col">Correo</th>
+					    <th scope="col">Dirección</th>
+					    <th scope="col">Teléfono</th>
+					    <th scope="col"></th>
+					    <th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="client: ${listClients}">
+						<td><input class="form-check-input" type="checkbox" value="" id="" style="vertical-align: middle;"></td>
 						<td th:text="${client.id}" style="vertical-align: middle;">Client ID</td>
 						<td th:text="${client.cedula}" style="vertical-align: middle;">Cedula</td>
 						<td th:text="${client.nombre}" style="vertical-align: middle;">Nombre</td>
