@@ -1,15 +1,9 @@
 var toastDelete = document.getElementById('deleteToast')
 var toastTrigger = document.getElementById('deleteToastBtn')
-var modalDelete = new bootstrap.Modal(document.getElementById('deleteModal'))
 
-function showModal(modal) {
-	modal.show()
-}
 
 function eliminar(cedula){
 	console.log('eliminar ', cedula);
-	
-	// showModal(modalDelete)
 	
 	fetch('http://localhost:8080/usuarios/eliminar/' + cedula, {
 			method: 'DELETE'
