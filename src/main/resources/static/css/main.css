@@ -28,3 +28,9 @@ thead tr th {
   position: sticky;
   top: 0;
 }
+
+
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}
