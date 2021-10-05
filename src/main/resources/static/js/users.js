@@ -1,6 +1,7 @@
-var toastDelete = document.getElementById('deleteToast')
-var toastTrigger = document.getElementById('deleteToastBtn')
+var toastDelete = document.getElementById('deleteToast');
+var toastTrigger = document.getElementById('deleteToastBtn');
 
+var password = '';
 
 function eliminar(cedula){
 	console.log('eliminar ', cedula);
@@ -19,12 +20,13 @@ function eliminar(cedula){
 }
 
 
-function editar(id, cedula_usuario, nombre_usuario, email_usuario, usuario){
+function editar(id, cedula_usuario, nombre_usuario, email_usuario, usuario, psw){
 	document.getElementById('id').value = id;
 	document.getElementById('cedula_usuario2').value = cedula_usuario;
 	document.getElementById('email_usuario2').value = email_usuario;
 	document.getElementById('nombre_usuario2').value = nombre_usuario;
 	document.getElementById('usuario2').value = usuario;
+	password = psw;
 }
 
 $(document).ready(function(){
@@ -42,7 +44,7 @@ $(document).ready(function(){
 			cedula = parseFloat(cedula, 10);
 			var email_usuario = document.getElementById('email_usuario2').value;
 			var nombre_usuario = document.getElementById('nombre_usuario2').value;
-			var password = document.getElementById('password2').value;
+			//var password = document.getElementById('password2').value;
 			var usuario = document.getElementById('usuario2').value;
 			
 			var datos = {
