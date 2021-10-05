@@ -1,5 +1,6 @@
 package co.edu.unbosque.TiendaVirtual.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.unbosque.TiendaVirtual.model.ClienteModel;
 import co.edu.unbosque.TiendaVirtual.model.UsuarioModel;
@@ -30,8 +32,12 @@ public class AppController {
 	}
 	
 	@GetMapping("/dash")
-	public String viewDashboard(Model model) {
-		List<UsuarioModel> listUsers = usuarioRepository.findAll();
+	public String viewDashboard(@RequestParam(name = "qC", required = false) Long cedula,  Model model) {
+		List<UsuarioModel> listUsers = new ArrayList<UsuarioModel>();
+				
+		if (cedula != null) listUsers.add(usuarioRepository.findByCedula(cedula));
+		else listUsers = usuarioRepository.findAll();
+
 		model.addAttribute("listUsers", listUsers);
 		model.addAttribute("user", new UsuarioModel());
 		

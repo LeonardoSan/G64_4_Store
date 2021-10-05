@@ -8,7 +8,7 @@
 			
 			<div class="col-3" style="align-self: center">
 				<form class="d-flex">
-			        <input class="form-control form-control-sm me-2" list="cedulasList" id="cedulasSearchList" type="search" placeholder="Buscar por cédula" aria-label="Default select">
+			        <input class="form-control form-control-sm me-2" list="cedulasList" id="cedulasSearchList" name="qC" type="search" placeholder="Buscar por cédula" aria-label="Default select">
 			       	<datalist id="cedulasList">
 			        	<option th:each="user: ${listUsers}" th:value="${user.cedula_usuario}">
 			       	</datalist>
