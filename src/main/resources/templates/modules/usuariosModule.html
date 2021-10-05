@@ -40,10 +40,12 @@
 						<td th:text="${user.email_usuario}" style="vertical-align: middle;">Correo</td>
 						<td th:text="${user.usuario}" style="vertical-align: middle;">Usuario</td>
 						<td><button type="button" class="btn btn-outline-success btn-sm" th:attr="onclick=|editar('${user.id}', '${user.cedula_usuario}', '${user.nombre_usuario}', '${user.email_usuario}', '${user.usuario}', '${user.password}')|" data-bs-toggle="modal" data-bs-target="#modificarUsuarioModal">Modificar</button></td>
-						<td><button type="button" class="btn btn-outline-danger btn-sm" th:attr="onclick=|eliminar('${user.id}')|" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button></td>
+						<td><button type="button" class="btn btn-outline-danger btn-sm delete-btn" th:attr="onclick=|eliminar('${user.id}')|" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button></td>
 					</tr>				
 				</tbody>
 			</table>
+			<!-- <button type="button" class="d-inline-block btn btn-danger btn-sm mx-3 mt-1" disabled>Eliminar seleccionados</button>  -->
+			<a th:if="${param.qC}" th:href="@{/dash}"><button type="button" class="d-inline-block btn btn-light btn-sm mx-3 mt-1">Restablecer búsqueda</button></a>
 		</div>
 	</div>
 </section>
