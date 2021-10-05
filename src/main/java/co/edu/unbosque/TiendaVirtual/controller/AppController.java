@@ -35,7 +35,13 @@ public class AppController {
 	public String viewDashboard(@RequestParam(name = "qC", required = false) Long cedula,  Model model) {
 		List<UsuarioModel> listUsers = new ArrayList<UsuarioModel>();
 				
-		if (cedula != null) listUsers.add(usuarioRepository.findByCedula(cedula));
+		if (cedula != null) {
+			UsuarioModel tempUser = new UsuarioModel();
+			tempUser = usuarioRepository.findByCedula(cedula);
+			
+			if (tempUser != null) listUsers.add(tempUser);
+			else listUsers = usuarioRepository.findAll();
+		}
 		else listUsers = usuarioRepository.findAll();
 
 		model.addAttribute("listUsers", listUsers);
