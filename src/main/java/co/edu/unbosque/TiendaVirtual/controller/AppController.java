@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.unbosque.TiendaVirtual.model.ClienteModel;
+import co.edu.unbosque.TiendaVirtual.model.ProveedorModel;
 import co.edu.unbosque.TiendaVirtual.model.UsuarioModel;
 import co.edu.unbosque.TiendaVirtual.repositories.ClienteRepository;
+import co.edu.unbosque.TiendaVirtual.repositories.ProveedorRepository;
 import co.edu.unbosque.TiendaVirtual.repositories.UsuarioRepository;
 
 @Controller
@@ -24,6 +26,9 @@ public class AppController {
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private ProveedorRepository proveedorRepository;
 	
 	@GetMapping("")
 	public String viewHomePage() {
@@ -66,6 +71,15 @@ public class AppController {
 		model.addAttribute("client", new ClienteModel());
 		
 		return "clientes";
+	}
+	
+	@GetMapping("/dash/proveedores")
+	public String viewProveedores(Model model) {
+			
+		List<ProveedorModel> listProviders = proveedorRepository.findAll();
+		model.addAttribute("listProviders", listProviders);
+		
+		return "proveedores";
 	}
 	
 	@GetMapping("/register")
