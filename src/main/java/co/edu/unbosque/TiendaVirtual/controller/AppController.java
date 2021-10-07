@@ -50,10 +50,20 @@ public class AppController {
 	}
 	
 	@GetMapping("/dash/clientes")
-	public String viewClientes(Model model) {
+	public String viewClientes(@RequestParam(name = "qC", required = false) Long cedula, Model model) {			
+		List<ClienteModel> listClients = new ArrayList<ClienteModel>();
+		
+		if(cedula != null) {
+			ClienteModel tempClient = new ClienteModel();
+			tempClient = clienteRepository.findByCedula(cedula);
 			
-		List<ClienteModel> listClients = clienteRepository.findAll();
+			if (tempClient != null) listClients.add(tempClient);
+			else listClients = clienteRepository.findAll();
+		}
+		else listClients = clienteRepository.findAll();
+		
 		model.addAttribute("listClients", listClients);
+		model.addAttribute("client", new ClienteModel());
 		
 		return "clientes";
 	}
@@ -76,4 +86,6 @@ public class AppController {
 		
 		return "redirect:/dash";
 	}
+	
+	@PostMapping("")
 }

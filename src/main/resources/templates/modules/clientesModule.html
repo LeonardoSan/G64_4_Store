@@ -1,22 +1,29 @@
 <section th:fragment="moduloClientes">
-	<div class="container-fluid" style="margin-top: 20px;">
+	<div class="container-fluid mt-4">
 		<div class="row">
-		
 			<div class="col">
-			<h1 class="d-inline-block">Clientes</h1>
-			<button type="button" class="d-inline-block btn btn-outline-primary btn-sm mx-3 mb-3">Añadir un cliente</button>
+				<h1 class="d-inline-block">Clientes</h1>
+				<button type="button" class="d-inline-block btn btn-outline-primary btn-sm mx-3 mb-3" data-bs-toggle="modal" data-bs-target="#agregarClienteModal">Añadir un cliente</button>
+			</div>	
 			
-			</div>			
+			<div class="col-3" style="align-self: center">
+				<form class="d-flex">
+			        <input class="form-control form-control-sm me-2" list="cedulasList" id="cedulasClientesSearchList" name="qC" type="search" placeholder="Buscar por cédula" aria-label="Default select">
+			       	<datalist>
+			        	<option th:each="client: ${listClients}" th:value="${client.cedula}">
+			       	</datalist>
+			        <button class="btn btn-outline-primary btn-sm" type="submit">Buscar</button>
+			      </form>
+			</div>
 		</div>
 		
-		<div>
+		<div class="tableWrap">
 			<table class="table table-hover table-responsive">
-				<caption>Lista de clientes</caption>
 				<thead>
 					<tr class="table-light">
 						<th scope="col"></th>
 						<th scope="col">#</th>
-					    <th scope="col">Cédula</th>
+					    <th scope="col">C&eacute;dula</th>
 					    <th scope="col">Nombre</th>
 					    <th scope="col">Correo</th>
 					    <th scope="col">Dirección</th>
@@ -25,7 +32,7 @@
 					    <th scope="col"></th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="overflow-auto">
 					<tr th:each="client: ${listClients}">
 						<td><input class="form-check-input" type="checkbox" value="" id="" style="vertical-align: middle;"></td>
 						<td th:text="${client.id}" style="vertical-align: middle;">Client ID</td>
@@ -39,6 +46,147 @@
 					</tr>				
 				</tbody>
 			</table>
+			<!-- <button type="button" class="d-inline-block btn btn-danger btn-sm mx-3 mt-1" disabled>Eliminar seleccionados</button>  -->
+			<a th:if="${param.qC}" th:href="@{/dash/clientes}"><button type="button" class="d-inline-block btn btn-light btn-sm mx-3 mt-1">Restablecer búsqueda</button></a>
 		</div>
 	</div>
 </section>
+
+<div th:fragment="moduloAgregarClientes" class="modal fade" id="agregarClienteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+		
+		  <!-- Modal Header -->
+	      <div class="modal-header">
+	      	<i class="fas fa-user me-2"></i>
+	        <h5 class="modal-title" id="agregarUsuarioModalLabel">Añadir un cliente</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      
+	      
+	      <!-- Modal Body -->
+	      <div class="modal-body">
+	      	 
+	        <form th:action="@{/clientes/guardar}" th:object="${client}" method="post" id="addClientForm" style="max-width: 700px; margin: 0 auto;">
+		        <div class="m-3">
+		        <div class="row">
+		            
+		            
+		            <div class="form-group col">
+		                <label class="col-form-label">Cédula: </label>
+		                <input type="text" th:field="*{cedula}" class="form-control"
+		                            required minlength="2" maxlength="20"/>
+		            </div>
+		             
+		            <div class="form-group col">
+		                <label class="col-form-label">Nombre: </label>
+		                <input type="text" th:field="*{nombre}" class="form-control"
+		                            required minlength="6" maxlength="20"/>
+		                
+		            </div>
+		         </div>
+		         
+		         <div class="row">
+		         	<div class="form-group col">
+		                <div class="mb-3">
+		                	<label class="col-form-label">E-mail: </label>
+		                    <input type="email" th:field="*{email}" class="form-control" required />
+		                </div>
+		            </div>		         
+		         </div>
+		         
+		         <div class="row">
+		            <div class="form-group col">
+		                	<label class="col-form-label">Dirección: </label>
+		                    <input type="text" th:field="*{direccion}" class="form-control"
+		                            required minlength="2" maxlength="32" />
+		            </div>
+		            
+		            <div class="form-group col">
+		            
+		                	<label class="col-form-label">Teléfono: </label>
+		                    <input type="text" th:field="*{telefono}" class="form-control"
+		                            required minlength="2" maxlength="20" />
+		            </div>
+		          </div>
+		        </div>
+		        
+		        <input type="submit" id="submit-form" class="hidden" style="display: none"/>
+	        </form>
+	      
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+	        <label for="submit-form" class="btn btn-primary">Agregar cliente</label>
+	      </div>
+	    </div>
+	</div>
+</div>
+
+<div th:fragment="moduloModificarClientes" class="modal fade" id="modificarClienteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modificarClienteModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+		
+		  <!-- Modal Header -->
+	      <div class="modal-header">
+	      	<i class="fas fa-user me-2"></i>
+	        <h5 class="modal-title" id="modificarUsuarioModalLabel">Modificar un usuario</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      
+	      
+	      <!-- Modal Body -->
+	      <div class="modal-body">
+	        <form id="modifyUserForm" style="max-width: 700px; margin: 0 auto;">
+	        	<input type="hidden" id="id" name="id">
+		        <div class="m-3">
+		        <div class="row">		        	
+		            <div class="form-group col">
+		                <label class="col-form-label" for="nombre_usuario">Username: </label>
+		                <input type="text" id="usuario2" name="usuario" class="form-control"
+		                            required minlength="2" maxlength="20"/>
+		            </div>
+		             
+		            <div class="form-group col">
+		                <div class="mb-3">
+		                	<label class="col-form-label" for="password">Password: </label>
+		                    <input type="password" id="password2" name="password" class="form-control"
+		                            required minlength="6" maxlength="20" disabled placeholder="*******"/>
+		                </div>
+		            </div>
+		         </div>
+		         
+		         <div class="row">
+		         	<div class="form-group col">
+		                <div class="mb-3">
+		                	<label class="col-form-label" for="email_usuario">E-mail: </label>
+		                    <input type="email" id="email_usuario2" name="email_usuario" class="form-control" required/>
+		                </div>
+		            </div>		         
+		         </div>
+		         
+		         <div class="row">
+		            <div class="form-group col">
+		               	<label class="col-form-label" for="nombre_usuario">Nombre completo: </label>
+		                <input type="text" class="form-control" id="nombre_usuario2" name="nombre_usuario"
+		                       required minlength="2" maxlength="32" />
+		            </div>
+		            
+		            <div class="form-group col">
+		                <label class="col-form-label" for="cedula_usuario2">Cédula: </label>
+		                <input type="text" id="cedula_usuario2" class="form-control"
+		                            required minlength="2" maxlength="20" />
+		            </div>
+		          </div>
+		        </div>
+		        
+		        <input type="submit" id="submit-modifyForm" class="hidden" style="display: none"/>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+	        <label for="submit-modifyForm" class="btn btn-primary">Modificar usuario</label>
+	      </div>
+	    </div>
+	</div>
+</div>
