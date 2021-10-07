@@ -1,0 +1,188 @@
+<section th:fragment="moduloProveedores">
+	<div class="container-fluid" style="margin-top: 20px;">
+		<div class="row">
+		
+			<div class="col">
+			<h1 class="d-inline-block">Proveedores</h1>
+			<button type="button" class="d-inline-block btn btn-outline-primary btn-sm mx-3 mb-3" data-bs-toggle="modal" data-bs-target="#agregarProveedorModal">A&ntilde;adir un proveedor</button>
+			
+			</div>			
+		</div>
+		
+		<div>
+			<table class="table table-hover table-responsive">
+				<caption>Lista de proveedores</caption>
+				<thead>
+					<tr class="table-light">
+						<th scope="col"></th>
+						<th scope="col">#</th>
+					    <th scope="col">NIT</th>
+					    <th scope="col">Nombre</th>
+					    <th scope="col">Direcci&oacute;n</th>
+					    <th scope="col">Tel&eacute;fono</th>
+					    <th scope="col">Ciudad</th>
+					    <th scope="col"></th>
+					    <th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="provider: ${listProviders}">
+						<td><input class="form-check-input" type="checkbox" value="" id="" style="vertical-align: middle;"></td>
+						<td th:text="${provider.id}" style="vertical-align: middle;">Provider ID</td>
+						<td th:text="${provider.nit}" style="vertical-align: middle;">NIT</td>
+						<td th:text="${provider.nombre}" style="vertical-align: middle;">Nombre</td>
+						<td th:text="${provider.direccion}" style="vertical-align: middle;">Direccion</td>
+						<td th:text="${provider.telefono}" style="vertical-align: middle;">Telefono</td>
+						<td th:text="${provider.ciudad}" style="vertical-align: middle;">Ciudad</td>
+						<td><button type="button" class="btn btn-outline-success btn-sm" th:attr="onclick=|editar('${provider.id}', '${provider.nit}', '${provider.nombre}', '${provider.direccion}', '${provider.ciudad}', '${provider.telefono}')|" data-bs-toggle="modal" data-bs-target="#modificarProveedorModal">Modificar</button></td>
+						<td><button type="button" class="btn btn-outline-danger btn-sm delete-btn" th:attr="onclick=|eliminar('${provider.id}')|" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button></td>
+					</tr>				
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<div th:fragment="moduloAgregarProveedores" class="modal fade" id="agregarProveedorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+		
+		  <!-- Modal Header -->
+	      <div class="modal-header">
+	      	<i class="fas fa-user me-2"></i>
+	        <h5 class="modal-title" id="agregarUsuarioModalLabel">AÃ±adir un proveedor</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      
+	      
+	      <!-- Modal Body -->
+	      <div class="modal-body">
+	        <form id="addProviderForm" style="max-width: 700px; margin: 0 auto;">
+		            <div class="m-3">
+		        <div class="row">		        	
+		            <div class="form-group col">
+		                <label class="col-form-label" for="nombre_proveedor">Nombre: </label>
+		                <input type="text" id="nombre_proveedor" name="nombre_proveedor" class="form-control"
+		                            required minlength="2" maxlength="50"/>
+		            </div>
+		            
+		             <div class="form-group col">
+		                <label class="col-form-label" for="nit_proveedor">NIT: </label>
+		                <input type="text" id="nit_proveedor" name="nit_proveedor" class="form-control"
+		                            required minlength="2" maxlength="20" />
+		            </div>
+		             
+		            
+		         </div>
+		         
+		         <div class="row">
+		         	<div class="form-group col">
+		                <div class="mb-3">
+		                	<label class="col-form-label" for="telefono_proveedor">Telefono: </label>
+		                    <input type="text" id="telefono_proveedor" name="telefono_proveedor" class="form-control" 
+		                    required minlength="2" maxlength="10"/>
+		                </div>
+		            </div>
+		            <div class="form-group col">
+		               	<label class="col-form-label" for="ciudad_proveedor">Ciudad: </label>
+		                <input type="text" class="form-control" id="ciudad_proveedor" name="ciudad_proveedor"
+		                       required minlength="2" maxlength="32" />
+		            </div>         
+		         </div>
+		         
+		         <div class="row">
+		            
+		            <div class="form-group col">
+		                <div class="mb-3">
+		                	<label class="col-form-label" for="direeccion_proveedor">Dirección: </label>
+		                    <input type="text" id="direccion_proveedor" name="direeccion_proveedor" class="form-control"
+		                            required minlength="2" maxlength="50"/>
+		                </div>
+		            </div>
+		           
+		          </div>
+		        </div>
+		        
+		        <input type="submit" id="submit-form" class="hidden" style="display: none"/>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+	        <label for="submit-form" class="btn btn-primary">Agregar proveedor</label>
+	      </div>
+	    </div>
+	</div>
+</div>
+
+
+<div th:fragment="moduloModificarProveedores" class="modal fade" id="modificarProveedorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modificarProveedorModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+		
+		  <!-- Modal Header -->
+	      <div class="modal-header">
+	      	<i class="fas fa-user me-2"></i>
+	        <h5 class="modal-title" id="modificarUsuarioModalLabel">Modificar un proveedor</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      
+	      
+	      <!-- Modal Body -->
+	      <div class="modal-body">
+	        <form id="modifyProviderForm" style="max-width: 700px; margin: 0 auto;">
+	        	<input type="hidden" id="id2" name="id2">
+		        <div class="m-3">
+		        <div class="row">		        	
+		            <div class="form-group col">
+		                <label class="col-form-label" for="nombre_proveedor">Nombre: </label>
+		                <input type="text" id="nombre_proveedor2" name="nombre_proveedor" class="form-control"
+		                            required minlength="2" maxlength="50"/>
+		            </div>
+		            
+		             <div class="form-group col">
+		                <label class="col-form-label" for="nit_proveedor">NIT: </label>
+		                <input type="text" id="nit_proveedor2" name="nit_proveedor" class="form-control"
+		                            required minlength="2" maxlength="20" />
+		            </div>
+		             
+		            
+		         </div>
+		         
+		         <div class="row">
+		         	<div class="form-group col">
+		                <div class="mb-3">
+		                	<label class="col-form-label" for="telefono_proveedor">Telefono: </label>
+		                    <input type="text" id="telefono_proveedor2" name="telefono_proveedor" class="form-control" 
+		                    required minlength="2" maxlength="10"/>
+		                </div>
+		            </div>
+		            <div class="form-group col">
+		               	<label class="col-form-label" for="ciudad_proveedor">Ciudad: </label>
+		                <input type="text" class="form-control" id="ciudad_proveedor2" name="ciudad_proveedor"
+		                       required minlength="2" maxlength="32" />
+		            </div>         
+		         </div>
+		         
+		         <div class="row">
+		            
+		            <div class="form-group col">
+		                <div class="mb-3">
+		                	<label class="col-form-label" for="direeccion_proveedor">Dirección: </label>
+		                    <input type="text" id="direccion_proveedor2" name="direeccion_proveedor" class="form-control"
+		                            required minlength="2" maxlength="50"/>
+		                </div>
+		            </div>
+		           
+		          </div>
+		        </div>
+		        
+		        <input type="submit" id="submit-modifyForm" class="hidden" style="display: none"/>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+	        <label for="submit-modifyForm" class="btn btn-primary">Modificar proveedor</label>
+	      </div>
+	    </div>
+	</div>
+</div>
