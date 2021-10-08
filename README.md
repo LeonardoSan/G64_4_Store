@@ -1,12 +1,11 @@
 # Tienda andrómeda - Grupo 4 (G64)
-Código fuente de la tienda genérica creado desde Colombia para el proceso de formación MisiónTIC 2022 en alianza con la Universidad El Bosque.
+Código fuente de la tienda genérica creado desde Colombia para el proceso de formación MisiónTIC 2022 en alianza con la Universidad El Bosque. Proyecto de software para gestionar transacciones comerciales de una tienda genérica
 
-El proyecto corre en el backend en un servidor Tomcat con Apache.
 
 ## Tecnologías
 
 - Maven
-- Spring Boot 2 - Spring Security
+- Spring Boot 2
 - Thymeleaf
 - JPA
 - Swagger
