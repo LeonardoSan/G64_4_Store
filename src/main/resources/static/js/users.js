@@ -1,5 +1,4 @@
 var toastDelete = document.getElementById('deleteToast');
-var toastTrigger = document.getElementById('deleteToastBtn');
 
 var password = '';
 

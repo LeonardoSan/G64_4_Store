@@ -40,7 +40,7 @@
 						<td th:text="${user.email_usuario}" style="vertical-align: middle;">Correo</td>
 						<td th:text="${user.usuario}" style="vertical-align: middle;">Usuario</td>
 						<td><button type="button" class="btn btn-outline-success btn-sm" th:attr="onclick=|editar('${user.id}', '${user.cedula_usuario}', '${user.nombre_usuario}', '${user.email_usuario}', '${user.usuario}', '${user.password}')|" data-bs-toggle="modal" data-bs-target="#modificarUsuarioModal">Modificar</button></td>
-						<td><button type="button" class="btn btn-outline-danger btn-sm delete-btn" th:attr="onclick=|eliminar('${user.id}')|" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button></td>
+						<td><button type="button" class="btn btn-outline-danger btn-sm delete-btn" th:attr="onclick=|eliminar('${user.id}')|" >Eliminar</button></td>
 					</tr>				
 				</tbody>
 			</table>
@@ -64,7 +64,7 @@
 	      
 	      <!-- Modal Body -->
 	      <div class="modal-body">
-	        <form th:action="@{/process_register}" th:object="${user}" method="post" id="addUserForm" style="max-width: 700px; margin: 0 auto;">
+	        <form th:action="@{/add_user}" th:object="${user}" method="POST" id="addUserForm" style="max-width: 700px; margin: 0 auto;">
 		        <div class="m-3">
 		        <div class="row">
 		            
@@ -149,7 +149,7 @@
 		                <div class="mb-3">
 		                	<label class="col-form-label" for="password">Password: </label>
 		                    <input type="password" id="password2" name="password" class="form-control"
-		                            required minlength="6" maxlength="20" disabled/>
+		                            required minlength="6" maxlength="20" disabled placeholder="*******"/>
 		                </div>
 		            </div>
 		         </div>
@@ -167,7 +167,7 @@
 		            <div class="form-group col">
 		               	<label class="col-form-label" for="nombre_usuario">Nombre completo: </label>
 		                <input type="text" class="form-control" id="nombre_usuario2" name="nombre_usuario"
-		                       required minlength="2" maxlength="32" />
+		                       required minlength="2" maxlength="32" disabled/>
 		            </div>
 		            
 		            <div class="form-group col">
@@ -187,6 +187,19 @@
 	      </div>
 	    </div>
 	</div>
+</div>
+
+<div th:fragment="notificacionEliminar" class="position-fixed bottom-0 end-0 p-3" style="z-index: 99">
+  <div id="deleteToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Se ha eliminado un usuario</strong>
+      <small>hace un momento</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Un usuario ha sido eliminado satisfactoriamente.
+    </div>
+  </div>
 </div>
 
 

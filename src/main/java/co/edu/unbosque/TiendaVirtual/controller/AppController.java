@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,10 +55,20 @@ public class AppController {
 	}
 	
 	@GetMapping("/dash/clientes")
-	public String viewClientes(Model model) {
+	public String viewClientes(@RequestParam(name = "qC", required = false) Long cedula, Model model) {			
+		List<ClienteModel> listClients = new ArrayList<ClienteModel>();
+		
+		if(cedula != null) {
+			ClienteModel tempClient = new ClienteModel();
+			tempClient = clienteRepository.findByCedula(cedula);
 			
-		List<ClienteModel> listClients = clienteRepository.findAll();
+			if (tempClient != null) listClients.add(tempClient);
+			else listClients = clienteRepository.findAll();
+		}
+		else listClients = clienteRepository.findAll();
+		
 		model.addAttribute("listClients", listClients);
+		model.addAttribute("client", new ClienteModel());
 		
 		return "clientes";
 	}
@@ -73,22 +82,27 @@ public class AppController {
 		return "proveedores";
 	}
 	
-	@GetMapping("/register")
-	public String showRegistrationForm(Model model) {
-		model.addAttribute("user", new UsuarioModel());
-		
-		return "signup_form";
-	}
-	
-	@PostMapping("/process_register")
-	public String processRegister(UsuarioModel usuario) {
+	@PostMapping("/add_user")
+	public String addUser(UsuarioModel usuario) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(usuario.getPassword());
 		usuario.setPassword(encodedPassword);
 		
 		
 		usuarioRepository.save(usuario);
-		
 		return "redirect:/dash";
 	}
+	
+	@PostMapping("/add_client")
+	public String addClient(ClienteModel cliente) {
+		clienteRepository.save(cliente);
+		return "redirect:/dash/clientes";
+	}
+	
+	@PostMapping("/add_provider")
+	public String addProvider(ProveedorModel proveedor) {
+		proveedorRepository.save(proveedor);
+		return "redirect:/dash/proveedor";
+	}
+	
 }
