@@ -82,6 +82,12 @@ public class AppController {
 		return "proveedores";
 	}
 	
+	@GetMapping("/dash/productos")
+	public String viewProductos() {
+		
+		return "productos";
+	}
+	
 	@PostMapping("/add_user")
 	public String addUser(UsuarioModel usuario) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
