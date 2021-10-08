@@ -24,10 +24,8 @@ public class ClienteService {
 	private ClienteRepository clienteRepository;
 	
 	@PostMapping("/guardar")
-	public String guardar(@RequestBody ClienteModel cliente) {
+	public void guardar(@RequestBody ClienteModel cliente) {
 		clienteRepository.save(cliente);
-		
-		return "redirect:dash/clientes";
 	}
 	
 	@GetMapping("/listar")

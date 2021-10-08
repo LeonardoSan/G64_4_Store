@@ -70,6 +70,7 @@ $(document).ready(function(){
 		});
 		
 		const formularioAgregar = document.getElementById('addProviderForm');
+		
 		formularioAgregar.addEventListener('submit', function(event){
 			console.log('submit add');
 			

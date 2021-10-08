@@ -82,24 +82,27 @@ public class AppController {
 		return "proveedores";
 	}
 	
-	@GetMapping("/register")
-	public String showRegistrationForm(Model model) {
-		model.addAttribute("user", new UsuarioModel());
-		
-		return "signup_form";
-	}
-	
-	@PostMapping("/process_register")
-	public String processRegister(UsuarioModel usuario) {
+	@PostMapping("/add_user")
+	public String addUser(UsuarioModel usuario) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(usuario.getPassword());
 		usuario.setPassword(encodedPassword);
 		
 		
 		usuarioRepository.save(usuario);
-		
 		return "redirect:/dash";
 	}
 	
-	@PostMapping("")
+	@PostMapping("/add_client")
+	public String addClient(ClienteModel cliente) {
+		clienteRepository.save(cliente);
+		return "redirect:/dash/clientes";
+	}
+	
+	@PostMapping("/add_provider")
+	public String addProvider(ProveedorModel proveedor) {
+		proveedorRepository.save(proveedor);
+		return "redirect:/dash/proveedor";
+	}
+	
 }

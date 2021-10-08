@@ -1,12 +1,20 @@
 <section th:fragment="moduloProveedores">
 	<div class="container-fluid" style="margin-top: 20px;">
-		<div class="row">
-		
+		<div class="row">		
 			<div class="col">
-			<h1 class="d-inline-block">Proveedores</h1>
-			<button type="button" class="d-inline-block btn btn-outline-primary btn-sm mx-3 mb-3" data-bs-toggle="modal" data-bs-target="#agregarProveedorModal">A&ntilde;adir un proveedor</button>
+				<h1 class="d-inline-block">Proveedores</h1>
+				<button type="button" class="d-inline-block btn btn-outline-primary btn-sm mx-3 mb-3" data-bs-toggle="modal" data-bs-target="#agregarProveedorModal">A&ntilde;adir un proveedor</button>
+			</div>
 			
-			</div>			
+			<div class="col-3" style="align-self: center">
+				<form class="d-flex">
+			        <input class="form-control form-control-sm me-2" list="nitList" id="nitProveedoresSearchList" name="qC" type="search" placeholder="Buscar por NIT" aria-label="Default select">
+			       	<datalist id="nitsProveedoresList">
+			        	<option th:each="provider: ${listProviders}" th:value="${provider.nit}">
+			       	</datalist>
+			        <button class="btn btn-outline-primary btn-sm" type="submit">Buscar</button>
+			      </form>
+			</div>		
 		</div>
 		
 		<div>
@@ -43,7 +51,7 @@
 	</div>
 </section>
 
-<div th:fragment="moduloAgregarProveedores" class="modal fade" id="agregarProveedorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div th:fragment="moduloAgregarProveedores" class="modal fade" id="agregarProveedorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarProveedorModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
 		
@@ -94,7 +102,7 @@
 		            
 		            <div class="form-group col">
 		                <div class="mb-3">
-		                	<label class="col-form-label" for="direeccion_proveedor">Dirección: </label>
+		                	<label class="col-form-label" for="direeccion_proveedor">Direcci&oacute;n: </label>
 		                    <input type="text" id="direccion_proveedor" name="direeccion_proveedor" class="form-control"
 		                            required minlength="2" maxlength="50"/>
 		                </div>
@@ -167,7 +175,7 @@
 		            
 		            <div class="form-group col">
 		                <div class="mb-3">
-		                	<label class="col-form-label" for="direeccion_proveedor">Dirección: </label>
+		                	<label class="col-form-label" for="direeccion_proveedor">Direcci&oacute;n: </label>
 		                    <input type="text" id="direccion_proveedor2" name="direeccion_proveedor" class="form-control"
 		                            required minlength="2" maxlength="50"/>
 		                </div>
