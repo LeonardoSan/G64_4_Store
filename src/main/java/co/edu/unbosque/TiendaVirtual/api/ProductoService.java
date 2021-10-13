@@ -1,5 +1,6 @@
 package co.edu.unbosque.TiendaVirtual.api;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -52,6 +53,12 @@ public class ProductoService {
             Path path = Paths.get(UPLOADED_FOLDER + filename);
             System.out.println("Path: " + path);
             System.out.println(path.toAbsolutePath());
+            
+            File fRuta = new File(UPLOADED_FOLDER);
+            if (!fRuta.exists()) {
+            	fRuta.mkdir();
+            }
+            
             Files.write(path, bytes);
  
             redirectAttributes.addFlashAttribute("message", "Has subido correctamente" + filename + "', el tamaño del archivo es aproximadamente" +bytes.length/1024+" KB.");
