@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private DataSource dataSource;
 	
 	String[] resources = new String[]{
-            "/include/**","/css/**","/icons/**","/images/**","/js/**","/layer/**"
+            "/include/**","/css/**","/icons/**","/images/**","/js/**","/layer/**", "/documents/**"
     };
 	
 	
