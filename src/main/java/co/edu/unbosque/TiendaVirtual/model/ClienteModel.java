@@ -27,7 +27,7 @@ public class ClienteModel {
 	@Column(nullable = false)
 	private String email; //!< Customer email
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.MERGE)
 	@JoinColumn(name="cedula_cliente")
 	private List<VentasModel> ventas;
 

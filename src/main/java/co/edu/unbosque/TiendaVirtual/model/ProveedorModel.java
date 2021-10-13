@@ -34,7 +34,7 @@ public class ProveedorModel {
 	@Column(nullable = false)
 	private String ciudad; //!< Provider city
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.MERGE)
 	@JoinColumn(name="nit_proveedor")
 	private List<ProductosModel> productos;
 

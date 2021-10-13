@@ -32,7 +32,7 @@ public class UsuarioModel {
 	@Column(nullable = false, length = 64)
 	private String password;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.MERGE)
 	@JoinColumn(name="cedula_usuario")
 	private List<VentasModel> ventas;
 	

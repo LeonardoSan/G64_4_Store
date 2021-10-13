@@ -8,17 +8,19 @@
 		
 		<div class="mt-3">
 			<div id="missingFileAlertPlaceholder"></div>
-			
-		  	<label for="formFile" class="form-label">Subida de archivo con lista de productos</label>
-		  	<div class="row">
-		  		<div class="col-5">
-		  			<input class="form-control" type="file" id="formFile">
-		  		</div>
-		  		<div class="col-auto">
-		  			<button type="submit" class="btn btn-primary" id="loadFileBtn" th:attr="onclick=|alert('Tienes que seleccionar un archivo para subir', 'danger')|">Cargar archivo</button>
-		  		</div>    		
-    		</div>
-    		<div id="fileHelp" class="form-text">Debe ser un (1) solo archivo en formato CSV.</div>
+			<form class="form-horizontal" role="form" method="POST" action="/productos/upload" enctype="multipart/form-data">
+			  	<label for="formFile" class="form-label">Subida de archivo con lista de productos</label>
+			  	<div class="row">
+			  		<div class="col-5">
+			  			<input class="form-control" type="file" id="formFile" name="file" accept=".csv" required>
+			  		</div>
+			  		<div class="col-auto">
+			  			<button type="submit" class="btn btn-primary" id="loadFileBtn" th:attr="onclick=|alert('Tienes que seleccionar un archivo para subir', 'danger')|">Cargar archivo</button>
+			  			<input type="reset" class="btn btn-danger" value="Reiniciar" />
+			  		</div>    		
+	    		</div>
+	    		<div id="fileHelp" class="form-text">Debe ser un (1) solo archivo en formato CSV.</div>
+	    	</form>
 		</div>
 	</div>
 </section>
