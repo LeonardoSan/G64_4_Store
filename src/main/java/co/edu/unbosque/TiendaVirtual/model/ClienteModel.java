@@ -1,5 +1,7 @@
 package co.edu.unbosque.TiendaVirtual.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,10 @@ public class ClienteModel {
 	
 	@Column(nullable = false)
 	private String email; //!< Customer email
+	
+	@OneToMany(cascade = CascadeType.MERGE)
+	@JoinColumn(name="cedula_cliente")
+	private List<VentasModel> ventas;
 
 	public Long getId() {
 		return id;
@@ -73,6 +79,14 @@ public class ClienteModel {
 		this.email = email;
 	}
 	
+	public List<VentasModel> getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(List<VentasModel> ventas) {
+		this.ventas = ventas;
+	}
+
 	@Override
 	public String toString() {
 		return "Cliente{" +

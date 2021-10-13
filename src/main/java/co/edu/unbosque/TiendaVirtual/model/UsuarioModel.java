@@ -1,10 +1,15 @@
 package co.edu.unbosque.TiendaVirtual.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +31,10 @@ public class UsuarioModel {
 	
 	@Column(nullable = false, length = 64)
 	private String password;
+	
+	@OneToMany(cascade = CascadeType.MERGE)
+	@JoinColumn(name="cedula_usuario")
+	private List<VentasModel> ventas;
 	
 	public Long getId() {
 		return id;
@@ -63,5 +72,11 @@ public class UsuarioModel {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public List<VentasModel> getVentas() {
+		return ventas;
+	}
+	public void setVentas(List<VentasModel> ventas) {
+		this.ventas = ventas;
 	}
 }
