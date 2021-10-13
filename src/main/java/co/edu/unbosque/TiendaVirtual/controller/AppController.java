@@ -88,6 +88,11 @@ public class AppController {
 		return "productos";
 	}
 	
+	@GetMapping("/dash/ventas")
+	public String viewVentas() {
+		return "ventas";
+	}
+	
 	@PostMapping("/add_user")
 	public String addUser(UsuarioModel usuario) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
