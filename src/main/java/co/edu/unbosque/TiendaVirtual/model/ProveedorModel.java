@@ -1,10 +1,12 @@
 package co.edu.unbosque.TiendaVirtual.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,10 +35,6 @@ public class ProveedorModel {
 	
 	@Column(nullable = false)
 	private String ciudad; //!< Provider city
-	
-	@OneToMany(cascade = CascadeType.MERGE)
-	@JoinColumn(name="nit_proveedor")
-	private List<ProductosModel> productos;
 
 	public Long getId() {
 		return id;
@@ -84,14 +82,6 @@ public class ProveedorModel {
 
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
-	}
-
-	public List<ProductosModel> getProductos() {
-		return productos;
-	}
-
-	public void setProductos(List<ProductosModel> productos) {
-		this.productos = productos;
 	}
 
 	@Override

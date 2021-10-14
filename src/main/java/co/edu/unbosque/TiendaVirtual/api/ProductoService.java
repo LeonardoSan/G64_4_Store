@@ -75,18 +75,6 @@ public class ProductoService {
             
             ProductosModel producto = new ProductosModel();
             ProveedorModel proveedor = new ProveedorModel();
-            proveedor.setId((long) 123);
-            
-            /*producto.setIva_compra(1000.00);
-            producto.setCodigo((long) 4);
-            producto.setNombre("banana");
-            producto.setPrecio_compra(20000.00);
-            producto.setPrecio_venta(30000.00);
-            //producto.setProveedor(proveedor);
-            producto.setNit_proveedor((long) 123123);*/
-            
-            
-            //productoRepository.save(producto);
             
             productoRepository.deleteAll();
             
@@ -104,15 +92,18 @@ public class ProductoService {
                 	Double precio_venta = Double.parseDouble(split[5]);
                 	
                 	producto = new ProductosModel();
+                	proveedor = new ProveedorModel();
+                	proveedor.setId((long) 1);
+                	proveedor.setNit(nit_proveedor);
                 	producto.setCodigo(codigo);
                 	producto.setNombre(nombre);
-                	//producto.setNit_proveedor(nit_proveedor);
                 	producto.setPrecio_compra(precio_compra);
                 	producto.setIva_compra(iva);
                 	producto.setPrecio_venta(precio_venta);
                 	producto.setProveedor(proveedor);
                 	
                 	productoRepository.save(producto);
+                	
             	}
             	
             	i++;
