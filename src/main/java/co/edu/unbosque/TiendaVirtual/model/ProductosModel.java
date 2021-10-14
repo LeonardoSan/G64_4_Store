@@ -20,10 +20,10 @@ import javax.persistence.Table;
 @Entity
 @Table (name = "productos")
 public class ProductosModel {
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//private Long id;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
 	@Column(nullable = false, unique = true)
 	private Long codigo; //!< Product identification number
 	
@@ -43,16 +43,21 @@ public class ProductosModel {
 	@JoinColumn(name="nit_proveedor", referencedColumnName = "nit", nullable = false)    
 	private ProveedorModel proveedor;
 	
-	@ManyToMany(cascade = {CascadeType.MERGE},mappedBy="productos")
-	private List<VentasModel> ventas;
+	//@ManyToMany(cascade = {CascadeType.MERGE},mappedBy="ventas")
+	//private List<VentasModel> ventas;
+	
+	//@OneToMany()
+	//@JoinColumn(name="nit_proveedor", referencedColumnName = "nit", nullable = false)    
+	//private ProveedorModel proveedor;
+	
 
-	public Long getId() {
+	/*public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
+	}*/
 
 	public Long getCodigo() {
 		return codigo;
@@ -102,13 +107,13 @@ public class ProductosModel {
 		this.proveedor = proveedor;
 	}
 	
-	public List<VentasModel> getVentas() {
+	/*public List<VentasModel> getVentas() {
 		return ventas;
 	}
 
 	public void setVentas(List<VentasModel> ventas) {
 		this.ventas = ventas;
-	}
+	}*/
 
 	@Override
 	public String toString() {
