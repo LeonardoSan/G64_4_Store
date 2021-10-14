@@ -12,16 +12,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table (name = "ventas")
 public class VentasModel {
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//private Long id;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(nullable = false, unique = true)
+	//@Column(nullable = false, unique = true)
 	private Long codigo; //!< Sell identification number
 	
 	@Column(nullable = false)
@@ -42,18 +45,21 @@ public class VentasModel {
 	private UsuarioModel usuario;
 	
 	 @ManyToMany(cascade = CascadeType.MERGE)
+	 @OrderColumn(name = "codigo_detalle_ventas")
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @JoinTable(name = "detalle_ventas",
 	        joinColumns = @JoinColumn(name = "codigo_venta", referencedColumnName = "codigo"),
-	        inverseJoinColumns = @JoinColumn(name = "codigo_compra", referencedColumnName = "codigo"))
+	        inverseJoinColumns = @JoinColumn(name = "codigo_compra", referencedColumnName = "codigo")
+	 )
 	  private List<ProductosModel> productos;
 
-	public Long getId() {
+	/*public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
+	}*/
 
 	public Long getCodigo() {
 		return codigo;
