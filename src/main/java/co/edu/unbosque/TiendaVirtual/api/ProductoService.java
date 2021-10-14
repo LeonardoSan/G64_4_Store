@@ -1,14 +1,20 @@
 package co.edu.unbosque.TiendaVirtual.api;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +58,12 @@ public class ProductoService {
             Path path = Paths.get(UPLOADED_FOLDER + filename);
             System.out.println("Path: " + path);
             System.out.println(path.toAbsolutePath());
+            
+            File fRuta = new File(UPLOADED_FOLDER);
+            if (!fRuta.exists()) {
+            	fRuta.mkdir();
+            }
+            
             Files.write(path, bytes);
  
             redirectAttributes.addFlashAttribute("message", "Has subido correctamente" + filename + "', el tamaño del archivo es aproximadamente" +bytes.length/1024+" KB.");
@@ -62,8 +74,8 @@ public class ProductoService {
            
             
             ProductosModel producto = new ProductosModel();
-            //ProveedorModel proveedor = new ProveedorModel();
-            //proveedor.setId((long) 1);
+            ProveedorModel proveedor = new ProveedorModel();
+            proveedor.setId((long) 123);
             
             /*producto.setIva_compra(1000.00);
             producto.setCodigo((long) 4);
@@ -94,10 +106,11 @@ public class ProductoService {
                 	producto = new ProductosModel();
                 	producto.setCodigo(codigo);
                 	producto.setNombre(nombre);
-                	producto.setNit_proveedor(nit_proveedor);
+                	//producto.setNit_proveedor(nit_proveedor);
                 	producto.setPrecio_compra(precio_compra);
                 	producto.setIva_compra(iva);
                 	producto.setPrecio_venta(precio_venta);
+                	producto.setProveedor(proveedor);
                 	
                 	productoRepository.save(producto);
             	}
@@ -112,4 +125,24 @@ public class ProductoService {
  
         return "productos";
     }
+    
+    @GetMapping("/listar")
+	public List<ProductosModel> listar() {
+		return productoRepository.findAll();
+	}
+	
+	@GetMapping("/consultar/{id}")
+	public Optional<ProductosModel> consultar(@PathVariable("id") Long id) {
+		return productoRepository.findById(id);
+	}
+	
+	@DeleteMapping("/eliminar/{id}")
+	public void eliminar(@PathVariable("id") Long id) {
+		productoRepository.deleteById(id);
+	}
+	
+	@PutMapping("/actualizar")
+	public void actualizar(@RequestBody ProductosModel producto) {
+		productoRepository.save(producto);
+	}
 }

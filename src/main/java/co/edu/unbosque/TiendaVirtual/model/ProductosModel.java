@@ -39,8 +39,8 @@ public class ProductosModel {
 	@Column(nullable = false)
 	private Double precio_venta; //!< Product price sell
 	
-	@Column(nullable = false, insertable = false, updatable = false)
-	private Long nit_proveedor; //!< nit provider
+	//@Column(nullable = false, insertable = false, updatable = false)
+	//private Long nit_proveedor; //!< nit provider
 	
 	@ManyToOne
 	@JoinColumn(name="nit_proveedor",  referencedColumnName = "nit")
@@ -49,13 +49,13 @@ public class ProductosModel {
 	@ManyToMany(cascade = {CascadeType.MERGE},mappedBy="productos")
 	private List<VentasModel> ventas;
 
-	public Long getNit_proveedor() {
+	/*public Long getNit_proveedor() {
 		return nit_proveedor;
 	}
 
 	public void setNit_proveedor(Long nit_proveedor) {
 		this.nit_proveedor = nit_proveedor;
-	}
+	}*/
 
 	public Long getId() {
 		return id;

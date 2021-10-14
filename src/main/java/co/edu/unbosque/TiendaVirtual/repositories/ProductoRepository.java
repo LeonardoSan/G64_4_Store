@@ -17,7 +17,7 @@ public interface ProductoRepository extends JpaRepository<ProductosModel, Long>{
 	
 	@Transactional
 	@Modifying
-	@Query ("DELETE FROM ProductosModel p")
+	@Query ("DELETE FROM ProductosModel")
 	public void deleteAll();
 }
 
