@@ -9,25 +9,27 @@
 		<div class="mt-3">
 			<div class="row border p-1">
 				<div class="col p-2 mx-1">
-					<form>
-						<div class="row justify-content-md-center">
-							<label for="cedulaSearch" class="col-auto col-form-label">C&eacute;dula</label>
-							<div class="col-auto">
-								<input type="text" id="cedulaSearch" class="form-control">							
-							</div>
-							<div class="col-auto">
-								<button type="submit" class="btn btn-primary">Consultar</button>
-							</div>
+					<div class="row justify-content-md-center">
+						<!-- <button type="button" class="col-auto btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+						<label for="cedulaSearch" class="col-auto col-form-label">C&eacute;dula</label>
+						<div class="col-auto">
+							<input type="text" id="cedulaSearch" class="form-control">							
 						</div>
-					</form>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary" id="btnCedulaSearch" th:onclick="searchClient()">
+								Consultar
+							</button>
+						</div>
+					</div>
 				</div>
 				
 				<div class="col p-2 mx-1">
 					<div class="row justify-content-md-center">
 						<label for="staticClient" class="col-auto col-form-label">Cliente</label>
 						<div class="col-auto">
-							<input type="text" readonly class="form-control-plaintext px-2 bg-light border" id="staticClient" value="Nombre Apellido">
+							<input type="text" readonly class="form-control-plaintext px-2 bg-light border" id="staticClient" th:value="${client.nombre}">
 						</div>
+						<button type="button" class="btn-close" th:hidden="${client}" aria-label="Close"></button>
 					</div>
 				</div>
 				
@@ -35,7 +37,7 @@
 					<div class="row justify-content-md-center">
 						<label for="staticSaleID" class="col-auto col-form-label">Consecutivo</label>
 						<div class="col-auto">
-							<input type="text" readonly class="form-control-plaintext" id="staticSaleID" value="001">
+							<input type="text" readonly class="form-control-plaintext" id="staticSaleID" th:value="${sale.codigo}">
 						</div>
 					</div>
 				</div>
@@ -73,9 +75,9 @@
 				</div>
 				<div class="col-auto mx-3">
 					<h4  class="text-center">Nombre producto</h4>
-					<input type="text" readonly class="form-control-plaintext px-2 mb-2 border" id="staticProductName1" value="Nombre del producto">
-					<input type="text" readonly class="form-control-plaintext px-2 mb-2 border" id="staticProductName2" value="Nombre del producto">
-					<input type="text" readonly class="form-control-plaintext px-2 mb-2 border" id="staticProductName3" value="Nombre del producto">
+					<input type="text" readonly class="form-control-plaintext px-2 mb-2 border" id="staticProductName1" value="">
+					<input type="text" readonly class="form-control-plaintext px-2 mb-2 border" id="staticProductName2" value="">
+					<input type="text" readonly class="form-control-plaintext px-2 mb-2 border" id="staticProductName3" value="">
 				</div>
 				<div class="col-sm-1 mx-3">
 					<h4 class="text-center">Cant.</h4>
@@ -94,7 +96,7 @@
 			
 			<div class="row justify-content-end">
 				<div class="col-6 align-self-center">
-					<button type="button" class="btn btn-success align-middle">Confirmar</button>
+					<button type="button" class="btn btn-success align-middle disabled">Confirmar</button>
 				
 				</div>
 				

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.edu.unbosque.TiendaVirtual.model.ClienteModel;
 import co.edu.unbosque.TiendaVirtual.model.ProveedorModel;
 import co.edu.unbosque.TiendaVirtual.model.UsuarioModel;
+import co.edu.unbosque.TiendaVirtual.model.VentasModel;
 import co.edu.unbosque.TiendaVirtual.repositories.ClienteRepository;
 import co.edu.unbosque.TiendaVirtual.repositories.ProveedorRepository;
 import co.edu.unbosque.TiendaVirtual.repositories.UsuarioRepository;
@@ -89,7 +90,10 @@ public class AppController {
 	}
 	
 	@GetMapping("/dash/ventas")
-	public String viewVentas() {
+	public String viewVentas(Model model) {
+		model.addAttribute("client", new ClienteModel());
+		model.addAttribute("sale", new VentasModel());
+		
 		return "ventas";
 	}
 	
