@@ -20,9 +20,6 @@ import javax.persistence.Table;
 @Entity
 @Table (name = "productos")
 public class ProductosModel {
-	//@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//private Long id;
 	@Id
 	@Column(nullable = false, unique = true)
 	private Long codigo; //!< Product identification number

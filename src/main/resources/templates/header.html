@@ -7,16 +7,16 @@
 		
 		<ul class="Header-nav navbar-nav me-auto mb-2 mb-lg-0">
 			<li class="nav-item" role="presentation">
-				<a class="nav-link active" href="/dash" id="usuarios-tab">Usuarios</a>
+				<a class="nav-link" href="/dash" th:href="@{/dash}" id="usuarios-tab">Usuarios</a>
 			</li>
 			<li class="nav-item" role="presentation">
-				<a class="nav-link" href="/dash/clientes" id="clientes-tab">Clientes</a>
+				<a class="nav-link" href="/dash/clientes" th:href="@{/dash/clientes}" id="clientes-tab">Clientes</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/dash/proveedores">Proveedores</a>
+				<a class="nav-link" href="/dash/proveedores" th:href="@{/dash/proveedores}">Proveedores</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/dash/productos">Productos</a>
+				<a class="nav-link" href="/dash/productos" th:href="@{/dash/productos}">Productos</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/dash/ventas/" th:href="@{/dash/ventas}">Ventas</a>
