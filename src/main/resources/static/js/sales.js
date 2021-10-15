@@ -48,18 +48,11 @@ async function searchClient() {
 }
 
 
-async function searchProduct(index) {
-	switch(index) {
-		case 1:
-			codigoProducto = getElement('productSearch1'.value);
-			break;
-		default:
-			codigoProducto = null;
-	}
+async function searchProduct() {
+	codigoProducto = getElement('productSearch1').value;
+	console.log(codigoProducto);
 	
-	if (codigoProducto === '') {
-		
-	}
+	if (codigoProducto === '') return alert('Debes ingresar el código de un producto.');
 	
 	const datosProducto = await fetch('http://localhost:8080/productos/consultar/' + codigoProducto, {
         method: 'GET',
@@ -68,9 +61,23 @@ async function searchProduct(index) {
     });
 
     const producto = await datosProducto.json();
-	console.log(producto);
 
-	document.getElementById('staticProductName1').value = producto['nombre'];
+	getElement('staticProductName1').value = producto['nombre'];
+	getElement('staticProductAmount1').value = 1;
+	calcular(1);
+}
+
+function calcular(index) {
+	switch(index) {
+		case 1:
+			var amount = parseInt(StaticProductAmount1.value, 10);
+			var costPerProduct = 1000;
+	
+			var totalCost = amount * costPerProduct;
+	
+			document.getElementById('staticProductTotal1').value = '$ ' + (totalCost).toString();
+			break;
+	}
 }
 
 StaticProductAmount1.addEventListener('focusout', (event) => {

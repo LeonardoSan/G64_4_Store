@@ -8,8 +8,7 @@ function eliminar(id) {
 	})
 }
 
-function editar(id, cedula, nombre, email, direccion, telefono) {
-	document.getElementById('id').value = id;
+function editar(cedula, nombre, email, direccion, telefono) {
 	document.getElementById('cedula_cliente').value = cedula;
 	document.getElementById('nombre_cliente').value = nombre;
 	document.getElementById('email_cliente').value = email;
@@ -26,9 +25,6 @@ $(document).ready(function(){
 		console.log('submit editar');
 		event.preventDefault();
 		
-		var id = document.getElementById('id').value;
-		id = parseFloat(id, 10);
-		
 		var cedula = document.getElementById('cedula_cliente').value;
 		cedula = parseFloat(cedula, 10);
 		
@@ -38,7 +34,6 @@ $(document).ready(function(){
 		var telefono = document.getElementById('telefono_cliente').value;
 		
 		var datos = {
-			"id": id,
 			"cedula": cedula,
 			"nombre": nombre,
 			"direccion": direccion,
