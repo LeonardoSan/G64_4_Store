@@ -9,6 +9,11 @@ StaticProductAmount3 = document.getElementById('staticProductAmount3');
 
 var gCedulaCliente;
 
+var gTotalIva = 0.0; // <! Acumulador del total IVA
+
+
+var buttonCalculate = false;
+
 function getElement(elementId) {
 	return document.getElementById(elementId);
 }
@@ -48,10 +53,19 @@ async function searchClient() {
 }
 
 
-async function searchProduct() {
-	codigoProducto = getElement('productSearch1').value;
-	console.log(codigoProducto);
-	
+async function searchProduct(index) {
+	switch(index) {
+		case 1:
+			codigoProducto = getElement('productSearch1').value;
+			break;
+		case 2:
+			codigoProducto = getElement('productSearch2').value;
+			break;
+		case 3:
+			codigoProducto = getElement('productSearch3').value;
+			break;
+	}
+		
 	if (codigoProducto === '') return alert('Debes ingresar el código de un producto.');
 	
 	const datosProducto = await fetch('http://localhost:8080/productos/consultar/' + codigoProducto, {
@@ -61,23 +75,64 @@ async function searchProduct() {
     });
 
     const producto = await datosProducto.json();
-
-	getElement('staticProductName1').value = producto['nombre'];
-	getElement('staticProductAmount1').value = 1;
-	calcular(1);
+	console.log(producto);
+	
+	switch(index) {
+		case 1:
+			getElement('staticProductName1').value = producto['nombre'];
+			getElement('staticProductAmount1').value = 1;
+			break;
+		case 2:
+			getElement('staticProductName2').value = producto['nombre'];
+			getElement('staticProductAmount2').value = 1;
+			break;
+		case 3:
+			getElement('staticProductName3').value = producto['nombre'];
+			getElement('staticProductAmount3').value = 1;
+			break;
+	}
+	
+	calculateProductTotal(index);
+	
 }
 
-function calcular(index) {
+function calculateProductTotal(index) {
 	switch(index) {
 		case 1:
 			var amount = parseInt(StaticProductAmount1.value, 10);
 			var costPerProduct = 1000;
-	
 			var totalCost = amount * costPerProduct;
-	
 			document.getElementById('staticProductTotal1').value = '$ ' + (totalCost).toString();
+			
+			break;
+		// TO-DO Los demas campos
+		case 2:
+			var amount = parseInt(StaticProductAmount2.value, 10);
+			var costPerProduct = 1000;
+			var totalCost = amount * costPerProduct;
+			document.getElementById('staticProductTotal2').value = '$ ' + (totalCost).toString();
+			
+			break;
+		case 3:
+			var amount = parseInt(StaticProductAmount3.value, 10);
+			var costPerProduct = 1000;
+			var totalCost = amount * costPerProduct;
+			document.getElementById('staticProductTotal3').value = '$ ' + (totalCost).toString();
+			
 			break;
 	}
+	
+	if (buttonCalculate === false) {
+		toggleButton('calculateButton');
+		buttonCalculate = true;
+	}
+}
+
+function toggleButton(btnId, status=0) {
+	if (status)
+		getElement(btnId).classList.add('disabled');
+	else
+		getElement(btnId).classList.remove('disabled');	
 }
 
 StaticProductAmount1.addEventListener('focusout', (event) => {
@@ -91,9 +146,19 @@ StaticProductAmount1.addEventListener('focusout', (event) => {
 })
 
 StaticProductAmount2.addEventListener('focusout', (event) => {
+	var amount = parseInt(StaticProductAmount2.value, 10);
+	var costPerProduct = 1000;
 	
+	var totalCost = amount * costPerProduct;
+	
+	document.getElementById('staticProductTotal2').value = '$ ' + (totalCost).toString();
 })
 
 StaticProductAmount3.addEventListener('focusout', (event) => {
-	// TO-DO Calculos de IVA y valor total 
+	var amount = parseInt(StaticProductAmount3.value, 10);
+	var costPerProduct = 1000;
+	
+	var totalCost = amount * costPerProduct;
+	
+	document.getElementById('staticProductTotal3').value = '$ ' + (totalCost).toString();
 })

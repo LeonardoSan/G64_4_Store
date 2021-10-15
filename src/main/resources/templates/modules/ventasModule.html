@@ -53,7 +53,7 @@
 							<input type="text" id="productSearch1" class="form-control">							
 						</div>
 						<div class="col-auto">
-							<button type="submit" class="btn btn-outline-primary" th:onclick="searchProduct()">Consultar</button>
+							<button type="submit" class="btn btn-outline-primary" th:onclick="searchProduct(1)">Consultar</button>
 						</div>
 					</div>
 					<div class="row justify-content-md-center mb-2">
@@ -61,7 +61,7 @@
 							<input type="text" id="productSearch2" class="form-control">							
 						</div>
 						<div class="col-auto">
-							<button type="submit" class="btn btn-outline-primary">Consultar</button>
+							<button type="submit" class="btn btn-outline-primary" th:onclick="searchProduct(2)">Consultar</button>
 						</div>
 					</div>
 					<div class="row justify-content-md-center mb-2">
@@ -69,7 +69,7 @@
 							<input type="text" id="productSearch3" class="form-control">							
 						</div>
 						<div class="col-auto">
-							<button type="submit" class="btn btn-outline-primary">Consultar</button>
+							<button type="submit" class="btn btn-outline-primary" th:onclick="searchProduct(3)">Consultar</button>
 						</div>
 					</div>
 				</div>
@@ -95,8 +95,9 @@
 			
 			
 			<div class="row justify-content-end" style="max-width: 89%">
-				<div class="col-sm-2 align-self-center">
-					<button type="button" class="btn btn-success align-middle disabled">Confirmar</button>
+				<div class="col-3 align-self-center">
+					<button type="button" class="btn btn-success align-middle disabled mx-2">Confirmar</button>
+					<button type="button" class="btn btn-outline-secondary align-middle disabled mx-2" id="calculateButton">Calcular</button>
 				</div>
 				
 				<div class="col-4 mt-2">
