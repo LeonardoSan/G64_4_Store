@@ -93,7 +93,6 @@ public class ProductoService {
                 	
                 	producto = new ProductosModel();
                 	proveedor = new ProveedorModel();
-                	proveedor.setId((long) 1);
                 	proveedor.setNit(nit_proveedor);
                 	producto.setCodigo(codigo);
                 	producto.setNombre(nombre);

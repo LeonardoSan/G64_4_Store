@@ -22,7 +22,6 @@
 				<thead>
 					<tr class="table-light">
 						<th scope="col"></th>
-						<th scope="col">#</th>
 					    <th scope="col">C&eacute;dula</th>
 					    <th scope="col">Nombre</th>
 					    <th scope="col">Correo</th>
@@ -34,13 +33,12 @@
 				<tbody class="overflow-auto">
 					<tr th:each="user: ${listUsers}">
 						<td><input class="form-check-input" type="checkbox" value="" id="" style="vertical-align: middle;"></td>
-						<td th:text="${user.id}" style="vertical-align: middle;">User ID</td>
 						<td th:text="${user.cedula_usuario}" style="vertical-align: middle;">Cedula</td>
 						<td th:text="${user.nombre_usuario}" style="vertical-align: middle;">Nombre</td>
 						<td th:text="${user.email_usuario}" style="vertical-align: middle;">Correo</td>
 						<td th:text="${user.usuario}" style="vertical-align: middle;">Usuario</td>
-						<td><button type="button" class="btn btn-outline-success btn-sm" th:attr="onclick=|editar('${user.id}', '${user.cedula_usuario}', '${user.nombre_usuario}', '${user.email_usuario}', '${user.usuario}', '${user.password}')|" data-bs-toggle="modal" data-bs-target="#modificarUsuarioModal">Modificar</button></td>
-						<td><button type="button" class="btn btn-outline-danger btn-sm delete-btn" th:attr="onclick=|eliminar('${user.id}')|" >Eliminar</button></td>
+						<td><button type="button" class="btn btn-outline-success btn-sm" th:attr="onclick=|editar('${user.cedula_usuario}', '${user.nombre_usuario}', '${user.email_usuario}', '${user.usuario}', '${user.password}')|" data-bs-toggle="modal" data-bs-target="#modificarUsuarioModal">Modificar</button></td>
+						<td><button type="button" class="btn btn-outline-danger btn-sm delete-btn" th:attr="onclick=|eliminar('${user.cedula_usuario}')|" >Eliminar</button></td>
 					</tr>				
 				</tbody>
 			</table>
@@ -136,13 +134,12 @@
 	      <!-- Modal Body -->
 	      <div class="modal-body">
 	        <form id="modifyUserForm" style="max-width: 700px; margin: 0 auto;">
-	        	<input type="hidden" id="id" name="id">
 		        <div class="m-3">
 		        <div class="row">		        	
 		            <div class="form-group col">
 		                <label class="col-form-label" for="nombre_usuario">Username: </label>
 		                <input type="text" id="usuario2" name="usuario" class="form-control"
-		                            required minlength="2" maxlength="20"/>
+		                            required minlength="2" maxlength="20" disabled/>
 		            </div>
 		             
 		            <div class="form-group col">
@@ -167,7 +164,7 @@
 		            <div class="form-group col">
 		               	<label class="col-form-label" for="nombre_usuario">Nombre completo: </label>
 		                <input type="text" class="form-control" id="nombre_usuario2" name="nombre_usuario"
-		                       required minlength="2" maxlength="32" disabled/>
+		                       required minlength="2" maxlength="32"/>
 		            </div>
 		            
 		            <div class="form-group col">

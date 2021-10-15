@@ -1,17 +1,12 @@
 package co.edu.unbosque.TiendaVirtual.model;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
 @Table (name = "clientes")
 public class ClienteModel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	@Id	
 	@Column(nullable = false, unique = true)
 	private Long cedula; //!< Customer identification number
 	
@@ -26,18 +21,6 @@ public class ClienteModel {
 	
 	@Column(nullable = false)
 	private String email; //!< Customer email
-	
-	@OneToMany(cascade = CascadeType.MERGE)
-	@JoinColumn(name="cedula_cliente")
-	private List<VentasModel> ventas;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Long getCedula() {
 		return cedula;
@@ -77,14 +60,6 @@ public class ClienteModel {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	public List<VentasModel> getVentas() {
-		return ventas;
-	}
-
-	public void setVentas(List<VentasModel> ventas) {
-		this.ventas = ventas;
 	}
 
 	@Override

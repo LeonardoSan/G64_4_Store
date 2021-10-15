@@ -19,8 +19,7 @@ function eliminar(cedula){
 }
 
 
-function editar(id, cedula_usuario, nombre_usuario, email_usuario, usuario, psw){
-	document.getElementById('id').value = id;
+function editar(cedula_usuario, nombre_usuario, email_usuario, usuario, psw){
 	document.getElementById('cedula_usuario2').value = cedula_usuario;
 	document.getElementById('email_usuario2').value = email_usuario;
 	document.getElementById('nombre_usuario2').value = nombre_usuario;
@@ -37,8 +36,6 @@ $(document).ready(function(){
 			
 			event.preventDefault();
 			
-			var id = document.getElementById('id').value;
-			id = parseFloat(id, 10);
 			var cedula = document.getElementById('cedula_usuario2').value;
 			cedula = parseFloat(cedula, 10);
 			var email_usuario = document.getElementById('email_usuario2').value;
@@ -47,7 +44,6 @@ $(document).ready(function(){
 			var usuario = document.getElementById('usuario2').value;
 			
 			var datos = {
-					"id": id,
 					"cedula_usuario": cedula,
 					"email_usuario": email_usuario,
 					"nombre_usuario": nombre_usuario,
