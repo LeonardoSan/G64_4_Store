@@ -1,0 +1,128 @@
+<section th:fragment="moduloVentas">
+	<div class="container-fluid mt-4">
+		<div class="row">
+			<div class="col">
+				<h1 class="d-inline-block">Ventas</h1>
+			</div>	
+		</div>
+		
+		<div class="mt-3">
+			<div class="row border p-1">
+				<div class="col p-2 mx-1">
+					<div class="row justify-content-md-center">
+						<!-- <button type="button" class="col-auto btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+						<label for="cedulaSearch" class="col-auto col-form-label">C&eacute;dula</label>
+						<div class="col-auto">
+							<input type="text" id="cedulaSearch" class="form-control">							
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary" id="btnCedulaSearch" th:onclick="searchClient()">
+								Consultar
+							</button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col p-2 mx-1">
+					<div class="row justify-content-md-center">
+						<label for="staticClient" class="col-auto col-form-label">Cliente</label>
+						<div class="col-auto">
+							<input type="text" readonly class="form-control-plaintext px-2 bg-light border" id="staticClient" th:value="${client.nombre}">
+						</div>
+						<button type="button" class="btn-close" th:hidden="${client}" aria-label="Close"></button>
+					</div>
+				</div>
+				
+				<div class="col p-2 mx-1">
+					<div class="row justify-content-md-center">
+						<label for="staticSaleID" class="col-auto col-form-label">Consecutivo</label>
+						<div class="col-auto">
+							<input type="text" readonly class="form-control-plaintext" id="staticSaleID" th:value="${sale.codigo}">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<div class="row justify-content-md-center mt-3">
+				<div class="col-auto mx-3">
+					<h4 class="text-center">C&oacute;digo producto</h4>
+					<div class="row justify-content-md-center mb-2">
+						<div class="col-auto">
+							<input type="text" id="productSearch1" class="form-control">							
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-outline-primary" th:onclick="searchProduct()">Consultar</button>
+						</div>
+					</div>
+					<div class="row justify-content-md-center mb-2">
+						<div class="col-auto">
+							<input type="text" id="productSearch2" class="form-control">							
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-outline-primary">Consultar</button>
+						</div>
+					</div>
+					<div class="row justify-content-md-center mb-2">
+						<div class="col-auto">
+							<input type="text" id="productSearch3" class="form-control">							
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-outline-primary">Consultar</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-auto mx-3">
+					<h4  class="text-center">Nombre producto</h4>
+					<input type="text" readonly class="form-control-plaintext px-2 mb-2 border" id="staticProductName1" value="">
+					<input type="text" readonly class="form-control-plaintext px-2 mb-2 border" id="staticProductName2" value="">
+					<input type="text" readonly class="form-control-plaintext px-2 mb-2 border" id="staticProductName3" value="">
+				</div>
+				<div class="col-sm-1 mx-3">
+					<h4 class="text-center">Cant.</h4>
+					<input type="text" class="form-control px-2 mb-2" id="staticProductAmount1" value="">
+					<input type="text" class="form-control px-2 mb-2" id="staticProductAmount2" value="">
+					<input type="text" class="form-control px-2 mb-2" id="staticProductAmount3" value="">
+				</div>
+				<div class="col-auto mx-3">
+					<h4 class="text-center">Vlr. total</h4>
+					<input type="text" readonly class="form-control-plaintext px-2 mb-2 text-center" id="staticProductTotal1" value="0">
+					<input type="text" readonly class="form-control-plaintext px-2 mb-2 text-center" id="staticProductTotal2" value="0">
+					<input type="text" readonly class="form-control-plaintext px-2 mb-2 text-center" id="staticProductTotal3" value="0">
+				</div>			
+			</div>
+			
+			
+			<div class="row justify-content-end">
+				<div class="col-6 align-self-center">
+					<button type="button" class="btn btn-success align-middle disabled">Confirmar</button>
+				
+				</div>
+				
+				<div class="col mt-2">
+					<div class="row mb-2">
+						<label for="staticSubtotal" class="col-auto col-form-label col-form-label-sm">Total venta</label>
+						<div class="col-auto">
+							<input type="text" readonly class="form-control-plaintext form-control-sm px-2 bg-light border" id="staticSubtotal" value="">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="staticIVA" class="col-auto col-form-label col-form-label-sm">Total IVA</label>
+						<div class="col-auto">
+							<input type="text" readonly class="form-control-plaintext form-control-sm px-2 bg-light border" id="staticIVA" value="">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="staticTotal" class="col-auto col-form-label col-form-label-sm">Total con IVA</label>
+						<div class="col-auto">
+							<input type="text" readonly class="form-control-plaintext form-control-sm px-2 bg-light border" id="staticTotal" value="">
+						</div>
+					</div>
+				
+				</div>	
+			</div>
+			
+		</div>
+	</div>
+</section>

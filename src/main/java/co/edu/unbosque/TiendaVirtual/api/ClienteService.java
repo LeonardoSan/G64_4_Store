@@ -38,6 +38,12 @@ public class ClienteService {
 		return clienteRepository.findById(id);
 	}
 	
+	@GetMapping("/consultarPorCedula/{cedula}")
+	public ClienteModel consultarPorCedula(@PathVariable("cedula") Long cedula) {
+		return clienteRepository.findByCedula(cedula);
+	}
+	
+	
 	@DeleteMapping("/eliminar/{id}")
 	public void eliminar(@PathVariable("id") Long id) {
 		clienteRepository.deleteById(id);

@@ -2,6 +2,7 @@ package co.edu.unbosque.TiendaVirtual.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.edu.unbosque.TiendaVirtual.model.ClienteModel;
 import co.edu.unbosque.TiendaVirtual.model.ProveedorModel;
 import co.edu.unbosque.TiendaVirtual.model.UsuarioModel;
+import co.edu.unbosque.TiendaVirtual.model.VentasModel;
 import co.edu.unbosque.TiendaVirtual.repositories.ClienteRepository;
 import co.edu.unbosque.TiendaVirtual.repositories.ProveedorRepository;
 import co.edu.unbosque.TiendaVirtual.repositories.UsuarioRepository;
@@ -40,8 +42,7 @@ public class AppController {
 		List<UsuarioModel> listUsers = new ArrayList<UsuarioModel>();
 				
 		if (cedula != null) {
-			UsuarioModel tempUser = new UsuarioModel();
-			tempUser = usuarioRepository.findByCedula(cedula);
+			UsuarioModel tempUser = usuarioRepository.findByCedula(cedula);
 			
 			if (tempUser != null) listUsers.add(tempUser);
 			else listUsers = usuarioRepository.findAll();
@@ -86,6 +87,14 @@ public class AppController {
 	public String viewProductos() {
 		
 		return "productos";
+	}
+	
+	@GetMapping("/dash/ventas")
+	public String viewVentas(Model model) {
+		model.addAttribute("client", new ClienteModel());
+		model.addAttribute("sale", new VentasModel());
+		
+		return "ventas";
 	}
 	
 	@PostMapping("/add_user")

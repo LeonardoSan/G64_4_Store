@@ -2,29 +2,13 @@ package co.edu.unbosque.TiendaVirtual.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OrderColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table (name = "ventas")
 public class VentasModel {
-	//@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//private Long id;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(nullable = false, unique = true)
 	private Long codigo; //!< Sell identification number
 	
 	@Column(nullable = false)
@@ -37,11 +21,9 @@ public class VentasModel {
 	private Double total_venta; //!< total sell
 	
 	@ManyToOne
-	@JoinColumn(name="cedula_cliente",  referencedColumnName = "cedula")
 	private ClienteModel cliente;
 	
 	@ManyToOne
-	@JoinColumn(name="cedula_usuario",  referencedColumnName = "cedula_usuario")
 	private UsuarioModel usuario;
 	
 	 @ManyToMany(cascade = CascadeType.MERGE)

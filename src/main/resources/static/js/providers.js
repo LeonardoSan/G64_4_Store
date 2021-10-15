@@ -18,8 +18,7 @@ function eliminar(id){
 }
 
 
-function editar(id, nit, nombre, direccion, ciudad, telefono){
-	document.getElementById('id2').value = id;
+function editar(nit, nombre, direccion, ciudad, telefono){
 	document.getElementById('nombre_proveedor2').value = nombre;
 	document.getElementById('nit_proveedor2').value = nit;
 	document.getElementById('telefono_proveedor2').value = telefono;
@@ -35,9 +34,7 @@ $(document).ready(function(){
 			console.log('submit editar');
 			
 			event.preventDefault();
-			
-			var id = document.getElementById('id2').value;
-			id = parseFloat(id, 10);
+
 			var nit = document.getElementById('nit_proveedor2').value;
 			nit = parseFloat(nit, 10);
 			var nombre = document.getElementById('nombre_proveedor2').value;
@@ -46,7 +43,6 @@ $(document).ready(function(){
 			var direccion = document.getElementById('direccion_proveedor2').value;
 			
 			var datos = {
-					"id": id,
 					"nit": nit,
 					"nombre": nombre,
 					"direccion": direccion,
