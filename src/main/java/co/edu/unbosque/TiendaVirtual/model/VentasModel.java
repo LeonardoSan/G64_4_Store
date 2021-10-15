@@ -21,6 +21,7 @@ public class VentasModel {
 	private Double total_venta; //!< total sell
 	
 	@ManyToOne
+	@JoinColumn(name="cliente_cedula", referencedColumnName = "cedula", nullable = false)  
 	private ClienteModel cliente;
 	
 	@ManyToOne

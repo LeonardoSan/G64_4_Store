@@ -19,6 +19,7 @@ import co.edu.unbosque.TiendaVirtual.model.VentasModel;
 import co.edu.unbosque.TiendaVirtual.repositories.ClienteRepository;
 import co.edu.unbosque.TiendaVirtual.repositories.ProveedorRepository;
 import co.edu.unbosque.TiendaVirtual.repositories.UsuarioRepository;
+import co.edu.unbosque.TiendaVirtual.repositories.VentaRepository;
 
 @Controller
 public class AppController {
@@ -31,6 +32,10 @@ public class AppController {
 	
 	@Autowired
 	private ProveedorRepository proveedorRepository;
+	
+	@Autowired
+	private VentaRepository ventasRepository;
+	
 	
 	@GetMapping("")
 	public String viewHomePage() {
@@ -95,6 +100,17 @@ public class AppController {
 		model.addAttribute("sale", new VentasModel());
 		
 		return "ventas";
+	}
+	
+	@GetMapping("/dash/reportes")
+	public String viewReportes(Model model) {
+			
+		List<VentasModel> listSells = ventasRepository.findAll();
+		model.addAttribute("listSells", listSells);
+		
+		System.out.println(listSells.toString());
+		
+		return "reportes";
 	}
 	
 	@PostMapping("/add_user")
