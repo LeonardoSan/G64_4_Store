@@ -26,14 +26,14 @@ public class VentasModel {
 	@ManyToOne
 	private UsuarioModel usuario;
 	
-	@ManyToMany(cascade = CascadeType.MERGE)
+	/*@ManyToMany(cascade = CascadeType.MERGE)
 	@OrderColumn(name = "codigo_detalle_ventas")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JoinTable(name = "detalle_ventas",
 	        joinColumns = @JoinColumn(name = "codigo_venta", referencedColumnName = "codigo"),
 	        inverseJoinColumns = @JoinColumn(name = "codigo_compra", referencedColumnName = "codigo")
 	)
-	private List<ProductosModel> productos;
+	private List<ProductosModel> productos;*/
 
 	/*public Long getId() {
 		return id;
@@ -91,11 +91,11 @@ public class VentasModel {
 		this.usuario = usuario;
 	}
 
-	public List<ProductosModel> getProductos() {
+	/*public List<ProductosModel> getProductos() {
 		return productos;
 	}
 
 	public void setProductos(List<ProductosModel> productos) {
 		this.productos = productos;
-	}
+	}*/
 }

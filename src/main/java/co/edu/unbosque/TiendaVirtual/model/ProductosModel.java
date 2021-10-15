@@ -25,7 +25,7 @@ public class ProductosModel {
 	@Column(nullable = false)
 	private Double precio_venta; //!< Product price sell
 	
-	@ManyToOne()  
+	@ManyToOne()
 	private ProveedorModel proveedor;
 	
 	//@ManyToMany(cascade = {CascadeType.MERGE},mappedBy="ventas")
