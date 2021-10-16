@@ -1,7 +1,5 @@
 package co.edu.unbosque.TiendaVirtual.model;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -21,28 +19,10 @@ public class VentasModel {
 	private Double total_venta; //!< total sell
 	
 	@ManyToOne
-	@JoinColumn(name="cliente_cedula", referencedColumnName = "cedula", nullable = false)  
 	private ClienteModel cliente;
 	
 	@ManyToOne
 	private UsuarioModel usuario;
-	
-	/*@ManyToMany(cascade = CascadeType.MERGE)
-	@OrderColumn(name = "codigo_detalle_ventas")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JoinTable(name = "detalle_ventas",
-	        joinColumns = @JoinColumn(name = "codigo_venta", referencedColumnName = "codigo"),
-	        inverseJoinColumns = @JoinColumn(name = "codigo_compra", referencedColumnName = "codigo")
-	)
-	private List<ProductosModel> productos;*/
-
-	/*public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}*/
 
 	public Long getCodigo() {
 		return codigo;
@@ -91,12 +71,4 @@ public class VentasModel {
 	public void setUsuario(UsuarioModel usuario) {
 		this.usuario = usuario;
 	}
-
-	/*public List<ProductosModel> getProductos() {
-		return productos;
-	}
-
-	public void setProductos(List<ProductosModel> productos) {
-		this.productos = productos;
-	}*/
 }

@@ -113,7 +113,8 @@ public class ProductoService {
             e.printStackTrace();
         }
  
-        return "productos";
+        // TO-DO debe redirigir a la página de productos con el parámetro SUCCESS
+        return "redirect:/dash/productos(success)";
     }
     
     @GetMapping("/listar")

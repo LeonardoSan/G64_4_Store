@@ -30,6 +30,10 @@ public class CustomUserDetails implements UserDetails {
 	public String getUsername() {
 		return usuario.getUsuario();
 	}
+	
+	public Long getCedula() {
+		return usuario.getCedula_usuario();
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {

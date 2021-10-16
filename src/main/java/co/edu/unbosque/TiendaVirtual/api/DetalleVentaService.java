@@ -6,18 +6,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unbosque.TiendaVirtual.model.VentasModel;
-import co.edu.unbosque.TiendaVirtual.repositories.VentaRepository;
+import co.edu.unbosque.TiendaVirtual.model.DetalleVentaModel;
+import co.edu.unbosque.TiendaVirtual.repositories.DetalleVentaRepository;
 
 @RestController
-@RequestMapping("ventas")
-public class VentaService {
-
+@RequestMapping("detalle_ventas")
+public class DetalleVentaService {
+	
 	@Autowired
-	private VentaRepository ventaRepository;
+	private DetalleVentaRepository detalleVentaRepository;
 	
 	@PostMapping("/guardar")
-	public VentasModel guardar(@RequestBody VentasModel venta) {
-		 return ventaRepository.save(venta);
+	public boolean guardar(@RequestBody DetalleVentaModel venta) {
+		return detalleVentaRepository.save(venta) != null;
 	}
+	
 }
